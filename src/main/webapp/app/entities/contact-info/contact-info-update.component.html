@@ -12,10 +12,24 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.contactInfo.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
+                        <option value="EMERGENCY">{{ 'flagFootBallv1App.ContactType.EMERGENCY' | translate }}</option>
+                        <option value="PERSONAL">{{ 'flagFootBallv1App.ContactType.PERSONAL' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="flagFootBallv1App.contactInfo.id" for="field_id">Id</label>
                     <select class="form-control" id="field_id" name="id" formControlName="id">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="playerOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : playerOption" *ngFor="let playerOption of ids; trackBy: trackById">{{ playerOption.id }}</option>
+                        <option [ngValue]="addressOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : addressOption" *ngFor="let addressOption of ids; trackBy: trackById">{{ addressOption.id }}</option>
                     </select>
                 </div>
             </div>

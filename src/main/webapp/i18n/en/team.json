@@ -17,9 +17,10 @@
         "title": "Team"
       },
       "name": "Name",
-      "id": "Id",
-      "id": "Id",
-      "id": "Id"
+      "playerId": "Player Id",
+      "coach": "Coach",
+      "league": "League",
+      "season": "Season"
     }
   }
 }

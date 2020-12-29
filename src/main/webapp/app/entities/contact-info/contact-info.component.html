@@ -23,6 +23,7 @@
             <thead>
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.contactInfo.type">Type</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.contactInfo.id">Id</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -30,9 +31,10 @@
             <tbody>
                 <tr *ngFor="let contactInfo of contactInfos ;trackBy: trackId">
                     <td><a [routerLink]="['/contact-info', contactInfo.id, 'view']">{{ contactInfo.id }}</a></td>
+                    <td jhiTranslate="{{ 'flagFootBallv1App.ContactType.' + contactInfo.type }}">{{ contactInfo.type }}</td>
                     <td>
                         <div *ngIf="contactInfo.id">
-                            <a [routerLink]="['/player', contactInfo.id?.id, 'view']" >{{ contactInfo.id?.id }}</a>
+                            <a [routerLink]="['/address', contactInfo.id?.id, 'view']" >{{ contactInfo.id?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">

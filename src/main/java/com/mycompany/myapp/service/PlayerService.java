@@ -24,18 +24,6 @@ public interface PlayerService {
      * @return the list of entities.
      */
     List<Player> findAll();
-    /**
-     * Get all the PlayerDTO where Id is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<Player> findAllWhereIdIsNull();
-    /**
-     * Get all the PlayerDTO where Id is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<Player> findAllWhereIdIsNull();
 
 
     /**

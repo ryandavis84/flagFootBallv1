@@ -35,30 +35,53 @@
       "fieldValidateRules": [
         "required"
       ]
+    },
+    {
+      "fieldName": "jerseySize",
+      "fieldType": "JerseySize",
+      "fieldValues": "YS,YM,YL,S,M,L,XL,XXL,XXXL",
+      "fieldValidateRules": [
+        "required"
+      ]
     }
   ],
   "relationships": [
     {
       "relationshipType": "one-to-one",
-      "otherEntityName": "emergencyContact",
-      "otherEntityRelationshipName": "id",
+      "otherEntityName": "contactInfo",
+      "otherEntityRelationshipName": "emergencyContact",
       "relationshipName": "id",
-      "ownerSide": false
+      "otherEntityField": "id",
+      "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "contactInfo",
-      "otherEntityRelationshipName": "id",
-      "relationshipName": "id",
-      "ownerSide": false
-    },
-    {
-      "relationshipType": "many-to-many",
-      "otherEntityName": "team",
-      "otherEntityRelationshipName": "id",
+      "otherEntityRelationshipName": "personalContact",
       "relationshipName": "id",
       "otherEntityField": "id",
-      "ownerSide": false
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "playerId",
+      "relationshipName": "team",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "league",
+      "otherEntityRelationshipName": "playerId",
+      "relationshipName": "league",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "season",
+      "otherEntityRelationshipName": "playerId",
+      "relationshipName": "season",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20201229210127",

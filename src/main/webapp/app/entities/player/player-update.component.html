@@ -78,6 +78,67 @@
                         </small>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.jerseySize" for="field_jerseySize">Jersey Size</label>
+                    <select class="form-control" name="jerseySize" formControlName="jerseySize" id="field_jerseySize">
+                        <option value="YS">{{ 'flagFootBallv1App.JerseySize.YS' | translate }}</option>
+                        <option value="YM">{{ 'flagFootBallv1App.JerseySize.YM' | translate }}</option>
+                        <option value="YL">{{ 'flagFootBallv1App.JerseySize.YL' | translate }}</option>
+                        <option value="S">{{ 'flagFootBallv1App.JerseySize.S' | translate }}</option>
+                        <option value="M">{{ 'flagFootBallv1App.JerseySize.M' | translate }}</option>
+                        <option value="L">{{ 'flagFootBallv1App.JerseySize.L' | translate }}</option>
+                        <option value="XL">{{ 'flagFootBallv1App.JerseySize.XL' | translate }}</option>
+                        <option value="XXL">{{ 'flagFootBallv1App.JerseySize.XXL' | translate }}</option>
+                        <option value="XXXL">{{ 'flagFootBallv1App.JerseySize.XXXL' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('jerseySize')!.invalid && (editForm.get('jerseySize')!.dirty || editForm.get('jerseySize')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('jerseySize')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.id" for="field_id">Id</label>
+                    <select class="form-control" id="field_id" name="id" formControlName="id">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contactInfoOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : contactInfoOption" *ngFor="let contactInfoOption of ids; trackBy: trackById">{{ contactInfoOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.id" for="field_id">Id</label>
+                    <select class="form-control" id="field_id" name="id" formControlName="id">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contactInfoOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : contactInfoOption" *ngFor="let contactInfoOption of ids; trackBy: trackById">{{ contactInfoOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.team" for="field_team">Team</label>
+                    <select class="form-control" id="field_team" name="team" formControlName="team">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="teamOption.id === editForm.get('team')!.value?.id ? editForm.get('team')!.value : teamOption" *ngFor="let teamOption of teams; trackBy: trackById">{{ teamOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.league" for="field_league">League</label>
+                    <select class="form-control" id="field_league" name="league" formControlName="league">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="leagueOption.id === editForm.get('league')!.value?.id ? editForm.get('league')!.value : leagueOption" *ngFor="let leagueOption of leagues; trackBy: trackById">{{ leagueOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.season" for="field_season">Season</label>
+                    <select class="form-control" id="field_season" name="season" formControlName="season">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="seasonOption.id === editForm.get('season')!.value?.id ? editForm.get('season')!.value : seasonOption" *ngFor="let seasonOption of seasons; trackBy: trackById">{{ seasonOption.id }}</option>
+                    </select>
+                </div>
             </div>
 
             <div>

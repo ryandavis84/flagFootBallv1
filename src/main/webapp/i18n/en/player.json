@@ -21,9 +21,12 @@
       "dob": "Dob",
       "grade": "Grade",
       "age": "Age",
+      "jerseySize": "Jersey Size",
       "id": "Id",
       "id": "Id",
-      "id": "Id"
+      "team": "Team",
+      "league": "League",
+      "season": "Season"
     }
   }
 }

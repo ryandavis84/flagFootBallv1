@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -30,21 +29,21 @@ public class Team implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "team")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "team_id",
-               joinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "id_id", referencedColumnName = "id"))
-    private Set<Player> ids = new HashSet<>();
+    private Set<Player> playerIds = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "ids", allowSetters = true)
-    private Coach id;
+    @JsonIgnoreProperties(value = "teamIds", allowSetters = true)
+    private Coach coach;
 
-    @ManyToMany(mappedBy = "ids")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnore
-    private Set<League> ids = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties(value = "teamIds", allowSetters = true)
+    private League league;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "teamIds", allowSetters = true)
+    private Season season;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -68,67 +67,68 @@ public class Team implements Serializable {
         this.name = name;
     }
 
-    public Set<Player> getIds() {
-        return ids;
+    public Set<Player> getPlayerIds() {
+        return playerIds;
     }
 
-    public Team ids(Set<Player> players) {
-        this.ids = players;
+    public Team playerIds(Set<Player> players) {
+        this.playerIds = players;
         return this;
     }
 
-    public Team addId(Player player) {
-        this.ids.add(player);
-        player.getIds().add(this);
+    public Team addPlayerId(Player player) {
+        this.playerIds.add(player);
+        player.setTeam(this);
         return this;
     }
 
-    public Team removeId(Player player) {
-        this.ids.remove(player);
-        player.getIds().remove(this);
+    public Team removePlayerId(Player player) {
+        this.playerIds.remove(player);
+        player.setTeam(null);
         return this;
     }
 
-    public void setIds(Set<Player> players) {
-        this.ids = players;
+    public void setPlayerIds(Set<Player> players) {
+        this.playerIds = players;
     }
 
-    public Coach getId() {
-        return id;
+    public Coach getCoach() {
+        return coach;
     }
 
-    public Team id(Coach coach) {
-        this.id = coach;
+    public Team coach(Coach coach) {
+        this.coach = coach;
         return this;
     }
 
-    public void setId(Coach coach) {
-        this.id = coach;
+    public void setCoach(Coach coach) {
+        this.coach = coach;
     }
 
-    public Set<League> getIds() {
-        return ids;
+    public League getLeague() {
+        return league;
     }
 
-    public Team ids(Set<League> leagues) {
-        this.ids = leagues;
+    public Team league(League league) {
+        this.league = league;
         return this;
     }
 
-    public Team addId(League league) {
-        this.ids.add(league);
-        league.getIds().add(this);
+    public void setLeague(League league) {
+        this.league = league;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public Team season(Season season) {
+        this.season = season;
         return this;
     }
 
-    public Team removeId(League league) {
-        this.ids.remove(league);
-        league.getIds().remove(this);
-        return this;
-    }
-
-    public void setIds(Set<League> leagues) {
-        this.ids = leagues;
+    public void setSeason(Season season) {
+        this.season = season;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

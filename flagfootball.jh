@@ -11,22 +11,23 @@ entity Team {
 	name String required
 }
 
-relationship ManyToMany {
-	Team{id} to Player{id}
-    League{id} to Team{id}
-    League{id} to Season{id}
-}
 
 relationship OneToMany {
-	Coach{id} to Team{id}
+	Coach{teamId} to Team
+    Team{playerId} to Player
+    League{playerId} to Player
+    Season{playerId} to Player
+    League{teamId} to Team
+    Season{teamId} to Team
+    Season{leagueId} to League
 }
 
 relationship OneToOne {
-	EmergencyContact{id} to Player{id}
-    EmergencyContact{id} to Coach{id}
-    ContactInfo{id} to Player{id}
-    ContactInfo{id} to Player{id}
-    Address{id} to ContactInfo{id}
+	Player{id} to ContactInfo{emergencyContact}
+    Coach{id} to ContactInfo{emergencyContact}
+    Player{id} to ContactInfo{personalContact}
+    Coach{id} to ContactInfo{personalContact}
+  	ContactInfo{id} to Address
 }
 
 entity Player {
@@ -35,11 +36,7 @@ entity Player {
     dob String required
     grade Integer required
     age Integer required
-}
-
-entity EmergencyContact {
-	firstName String required
-    lastName String required
+    jerseySize JerseySize required
 }
 
 entity Address {
@@ -47,10 +44,11 @@ entity Address {
     street2 String required
     city String required
     state String required
+    phoneNumber String required
 }
 
 entity ContactInfo {
-	
+	type ContactType required
 }
 
 entity Coach {
@@ -59,6 +57,9 @@ entity Coach {
     jerseySize JerseySize required
 }
 
+enum ContactType {
+	EMERGENCY, PERSONAL
+}
 enum JerseySize {
     YS, YM, YL, S, M, L, XL, XXL, XXXL
 }

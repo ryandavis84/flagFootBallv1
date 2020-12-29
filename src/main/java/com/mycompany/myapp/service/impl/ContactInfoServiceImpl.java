@@ -45,15 +45,57 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 
 
     /**
-     *  Get all the contactInfos where Id is {@code null}.
+     *  Get all the contactInfos where EmergencyContact is {@code null}.
      *  @return the list of entities.
      */
     @Transactional(readOnly = true) 
-    public List<ContactInfo> findAllWhereIdIsNull() {
-        log.debug("Request to get all contactInfos where Id is null");
+    public List<ContactInfo> findAllWhereEmergencyContactIsNull() {
+        log.debug("Request to get all contactInfos where EmergencyContact is null");
         return StreamSupport
             .stream(contactInfoRepository.findAll().spliterator(), false)
-            .filter(contactInfo -> contactInfo.getId() == null)
+            .filter(contactInfo -> contactInfo.getEmergencyContact() == null)
+            .collect(Collectors.toList());
+    }
+
+
+    /**
+     *  Get all the contactInfos where EmergencyContact is {@code null}.
+     *  @return the list of entities.
+     */
+    @Transactional(readOnly = true) 
+    public List<ContactInfo> findAllWhereEmergencyContactIsNull() {
+        log.debug("Request to get all contactInfos where EmergencyContact is null");
+        return StreamSupport
+            .stream(contactInfoRepository.findAll().spliterator(), false)
+            .filter(contactInfo -> contactInfo.getEmergencyContact() == null)
+            .collect(Collectors.toList());
+    }
+
+
+    /**
+     *  Get all the contactInfos where PersonalContact is {@code null}.
+     *  @return the list of entities.
+     */
+    @Transactional(readOnly = true) 
+    public List<ContactInfo> findAllWherePersonalContactIsNull() {
+        log.debug("Request to get all contactInfos where PersonalContact is null");
+        return StreamSupport
+            .stream(contactInfoRepository.findAll().spliterator(), false)
+            .filter(contactInfo -> contactInfo.getPersonalContact() == null)
+            .collect(Collectors.toList());
+    }
+
+
+    /**
+     *  Get all the contactInfos where PersonalContact is {@code null}.
+     *  @return the list of entities.
+     */
+    @Transactional(readOnly = true) 
+    public List<ContactInfo> findAllWherePersonalContactIsNull() {
+        log.debug("Request to get all contactInfos where PersonalContact is null");
+        return StreamSupport
+            .stream(contactInfoRepository.findAll().spliterator(), false)
+            .filter(contactInfo -> contactInfo.getPersonalContact() == null)
             .collect(Collectors.toList());
     }
 

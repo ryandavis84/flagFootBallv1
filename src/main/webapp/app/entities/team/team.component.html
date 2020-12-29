@@ -24,8 +24,9 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.name">Name</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.id">Id</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.id">Id</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.coach">Coach</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.league">League</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.season">Season</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -34,13 +35,18 @@
                     <td><a [routerLink]="['/team', team.id, 'view']">{{ team.id }}</a></td>
                     <td>{{ team.name }}</td>
                     <td>
-                        <span *ngFor="let id of team.ids; let last = last">
-                            <a class="form-control-static" [routerLink]="['/player', id?.id, 'view']">{{ id.id }}</a>{{ last ? '' : ', ' }}
-                        </span>
+                        <div *ngIf="team.coach">
+                            <a [routerLink]="['/coach', team.coach?.id, 'view']" >{{ team.coach?.id }}</a>
+                        </div>
                     </td>
                     <td>
-                        <div *ngIf="team.id">
-                            <a [routerLink]="['/coach', team.id?.id, 'view']" >{{ team.id?.id }}</a>
+                        <div *ngIf="team.league">
+                            <a [routerLink]="['/league', team.league?.id, 'view']" >{{ team.league?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="team.season">
+                            <a [routerLink]="['/season', team.season?.id, 'view']" >{{ team.season?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">

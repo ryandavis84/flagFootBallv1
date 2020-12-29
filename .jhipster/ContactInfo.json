@@ -1,20 +1,50 @@
 {
   "name": "ContactInfo",
-  "fields": [],
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "ContactType",
+      "fieldValues": "EMERGENCY,PERSONAL",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
   "relationships": [
     {
       "relationshipType": "one-to-one",
-      "otherEntityName": "player",
-      "otherEntityRelationshipName": "id",
+      "otherEntityName": "address",
+      "otherEntityRelationshipName": "contactInfo",
       "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
-      "otherEntityName": "address",
+      "otherEntityName": "player",
       "otherEntityRelationshipName": "id",
-      "relationshipName": "id",
+      "relationshipName": "emergencyContact",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "coach",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "emergencyContact",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "player",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "personalContact",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "coach",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "personalContact",
       "ownerSide": false
     }
   ],

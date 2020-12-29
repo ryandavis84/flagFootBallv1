@@ -1,12 +1,10 @@
-import { IContactInfo } from 'app/shared/model/contact-info.model';
-
 export interface IAddress {
   id?: number;
   street1?: string;
   street2?: string;
   city?: string;
   state?: string;
-  id?: IContactInfo;
+  phoneNumber?: string;
 }
 
 export class Address implements IAddress {
@@ -16,6 +14,6 @@ export class Address implements IAddress {
     public street2?: string,
     public city?: string,
     public state?: string,
-    public id?: IContactInfo
+    public phoneNumber?: string
   ) {}
 }

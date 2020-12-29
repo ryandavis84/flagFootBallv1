@@ -1,6 +1,8 @@
-import { IEmergencyContact } from 'app/shared/model/emergency-contact.model';
 import { IContactInfo } from 'app/shared/model/contact-info.model';
 import { ITeam } from 'app/shared/model/team.model';
+import { ILeague } from 'app/shared/model/league.model';
+import { ISeason } from 'app/shared/model/season.model';
+import { JerseySize } from 'app/shared/model/enumerations/jersey-size.model';
 
 export interface IPlayer {
   id?: number;
@@ -9,9 +11,12 @@ export interface IPlayer {
   dob?: string;
   grade?: number;
   age?: number;
-  id?: IEmergencyContact;
+  jerseySize?: JerseySize;
   id?: IContactInfo;
-  ids?: ITeam[];
+  id?: IContactInfo;
+  team?: ITeam;
+  league?: ILeague;
+  season?: ISeason;
 }
 
 export class Player implements IPlayer {
@@ -22,8 +27,11 @@ export class Player implements IPlayer {
     public dob?: string,
     public grade?: number,
     public age?: number,
-    public id?: IEmergencyContact,
+    public jerseySize?: JerseySize,
     public id?: IContactInfo,
-    public ids?: ITeam[]
+    public id?: IContactInfo,
+    public team?: ITeam,
+    public league?: ILeague,
+    public season?: ISeason
   ) {}
 }

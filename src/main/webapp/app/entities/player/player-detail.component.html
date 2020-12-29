@@ -28,6 +28,40 @@
                 <dd>
                     <span>{{ player.age }}</span>
                 </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.player.jerseySize">Jersey Size</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'flagFootBallv1App.JerseySize.' + player.jerseySize }}">{{ player.jerseySize }}</span>
+                </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.player.id">Id</span></dt>
+                <dd>
+                    <div *ngIf="player.id">
+                        <a [routerLink]="['/contact-info', player.id?.id, 'view']">{{ player.id?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.player.id">Id</span></dt>
+                <dd>
+                    <div *ngIf="player.id">
+                        <a [routerLink]="['/contact-info', player.id?.id, 'view']">{{ player.id?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.player.team">Team</span></dt>
+                <dd>
+                    <div *ngIf="player.team">
+                        <a [routerLink]="['/team', player.team?.id, 'view']">{{ player.team?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.player.league">League</span></dt>
+                <dd>
+                    <div *ngIf="player.league">
+                        <a [routerLink]="['/league', player.league?.id, 'view']">{{ player.league?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.player.season">Season</span></dt>
+                <dd>
+                    <div *ngIf="player.season">
+                        <a [routerLink]="['/season', player.season?.id, 'view']">{{ player.season?.id }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

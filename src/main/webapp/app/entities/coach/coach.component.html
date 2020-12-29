@@ -26,6 +26,8 @@
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.coach.firstName">First Name</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.coach.lastName">Last Name</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.coach.jerseySize">Jersey Size</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.coach.id">Id</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.coach.id">Id</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -35,6 +37,16 @@
                     <td>{{ coach.firstName }}</td>
                     <td>{{ coach.lastName }}</td>
                     <td jhiTranslate="{{ 'flagFootBallv1App.JerseySize.' + coach.jerseySize }}">{{ coach.jerseySize }}</td>
+                    <td>
+                        <div *ngIf="coach.id">
+                            <a [routerLink]="['/contact-info', coach.id?.id, 'view']" >{{ coach.id?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="coach.id">
+                            <a [routerLink]="['/contact-info', coach.id?.id, 'view']" >{{ coach.id?.id }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

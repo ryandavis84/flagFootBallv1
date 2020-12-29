@@ -2,6 +2,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ContactInfoService } from 'app/entities/contact-info/contact-info.service';
 import { IContactInfo, ContactInfo } from 'app/shared/model/contact-info.model';
+import { ContactType } from 'app/shared/model/enumerations/contact-type.model';
 
 describe('Service Tests', () => {
   describe('ContactInfo Service', () => {
@@ -20,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(ContactInfoService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new ContactInfo(0);
+      elemDefault = new ContactInfo(0, ContactType.EMERGENCY);
     });
 
     describe('Service methods', () => {
@@ -52,7 +53,12 @@ describe('Service Tests', () => {
       });
 
       it('should update a ContactInfo', () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            type: 'BBBBBB',
+          },
+          elemDefault
+        );
 
         const expected = Object.assign({}, returnedFromService);
 
@@ -64,7 +70,12 @@ describe('Service Tests', () => {
       });
 
       it('should return a list of ContactInfo', () => {
-        const returnedFromService = Object.assign({}, elemDefault);
+        const returnedFromService = Object.assign(
+          {
+            type: 'BBBBBB',
+          },
+          elemDefault
+        );
 
         const expected = Object.assign({}, returnedFromService);
 

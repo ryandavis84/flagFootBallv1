@@ -8,11 +8,35 @@
     -->
     <changeSet id="20201229210127-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="id_id"
+                                 baseTableName="player"
+                                 constraintName="fk_player_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="id_id"
+                                 baseTableName="player"
+                                 constraintName="fk_player_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact_info"/>
+
         <addForeignKeyConstraint baseColumnNames="team_id"
                                  baseTableName="player"
                                  constraintName="fk_player_team_id"
                                  referencedColumnNames="id"
                                  referencedTableName="team"/>
+
+        <addForeignKeyConstraint baseColumnNames="league_id"
+                                 baseTableName="player"
+                                 constraintName="fk_player_league_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="league"/>
+
+        <addForeignKeyConstraint baseColumnNames="season_id"
+                                 baseTableName="player"
+                                 constraintName="fk_player_season_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="season"/>
 
     </changeSet>
 </databaseChangeLog>

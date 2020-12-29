@@ -12,7 +12,7 @@
                                  baseTableName="contact_info"
                                  constraintName="fk_contact_info_id_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="player"/>
+                                 referencedTableName="address"/>
 
     </changeSet>
 </databaseChangeLog>

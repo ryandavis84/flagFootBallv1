@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -46,7 +47,7 @@ public class ContactInfoResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/contact-infos")
-    public ResponseEntity<ContactInfo> createContactInfo(@RequestBody ContactInfo contactInfo) throws URISyntaxException {
+    public ResponseEntity<ContactInfo> createContactInfo(@Valid @RequestBody ContactInfo contactInfo) throws URISyntaxException {
         log.debug("REST request to save ContactInfo : {}", contactInfo);
         if (contactInfo.getId() != null) {
             throw new BadRequestAlertException("A new contactInfo cannot already have an ID", ENTITY_NAME, "idexists");
@@ -67,7 +68,7 @@ public class ContactInfoResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/contact-infos")
-    public ResponseEntity<ContactInfo> updateContactInfo(@RequestBody ContactInfo contactInfo) throws URISyntaxException {
+    public ResponseEntity<ContactInfo> updateContactInfo(@Valid @RequestBody ContactInfo contactInfo) throws URISyntaxException {
         log.debug("REST request to update ContactInfo : {}", contactInfo);
         if (contactInfo.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -86,9 +87,21 @@ public class ContactInfoResource {
      */
     @GetMapping("/contact-infos")
     public List<ContactInfo> getAllContactInfos(@RequestParam(required = false) String filter) {
-        if ("id-is-null".equals(filter)) {
-            log.debug("REST request to get all ContactInfos where id is null");
-            return contactInfoService.findAllWhereIdIsNull();
+        if ("emergencycontact-is-null".equals(filter)) {
+            log.debug("REST request to get all ContactInfos where emergencyContact is null");
+            return contactInfoService.findAllWhereEmergencyContactIsNull();
+        }
+        if ("emergencycontact-is-null".equals(filter)) {
+            log.debug("REST request to get all ContactInfos where emergencyContact is null");
+            return contactInfoService.findAllWhereEmergencyContactIsNull();
+        }
+        if ("personalcontact-is-null".equals(filter)) {
+            log.debug("REST request to get all ContactInfos where personalContact is null");
+            return contactInfoService.findAllWherePersonalContactIsNull();
+        }
+        if ("personalcontact-is-null".equals(filter)) {
+            log.debug("REST request to get all ContactInfos where personalContact is null");
+            return contactInfoService.findAllWherePersonalContactIsNull();
         }
         log.debug("REST request to get all ContactInfos");
         return contactInfoService.findAll();

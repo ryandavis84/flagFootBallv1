@@ -11,12 +11,22 @@
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-many",
+      "relationshipType": "one-to-many",
+      "otherEntityName": "player",
+      "otherEntityRelationshipName": "season",
+      "relationshipName": "playerId"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "season",
+      "relationshipName": "teamId"
+    },
+    {
+      "relationshipType": "one-to-many",
       "otherEntityName": "league",
-      "otherEntityRelationshipName": "id",
-      "relationshipName": "id",
-      "otherEntityField": "id",
-      "ownerSide": false
+      "otherEntityRelationshipName": "season",
+      "relationshipName": "leagueId"
     }
   ],
   "changelogDate": "20201229205827",

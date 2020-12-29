@@ -26,17 +26,26 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "team",
-      "otherEntityRelationshipName": "id",
-      "relationshipName": "id"
+      "relationshipType": "one-to-one",
+      "otherEntityName": "contactInfo",
+      "otherEntityRelationshipName": "emergencyContact",
+      "relationshipName": "id",
+      "otherEntityField": "id",
+      "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
-      "otherEntityName": "emergencyContact",
-      "otherEntityRelationshipName": "id",
+      "otherEntityName": "contactInfo",
+      "otherEntityRelationshipName": "personalContact",
       "relationshipName": "id",
-      "ownerSide": false
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "coach",
+      "relationshipName": "teamId"
     }
   ],
   "changelogDate": "20201229210427",

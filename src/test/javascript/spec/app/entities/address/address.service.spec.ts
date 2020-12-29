@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(AddressService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Address(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Address(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -58,6 +58,7 @@ describe('Service Tests', () => {
             street2: 'BBBBBB',
             city: 'BBBBBB',
             state: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
           },
           elemDefault
         );
@@ -78,6 +79,7 @@ describe('Service Tests', () => {
             street2: 'BBBBBB',
             city: 'BBBBBB',
             state: 'BBBBBB',
+            phoneNumber: 'BBBBBB',
           },
           elemDefault
         );

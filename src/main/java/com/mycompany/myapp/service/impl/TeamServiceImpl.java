@@ -6,8 +6,6 @@ import com.mycompany.myapp.repository.TeamRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,19 +37,15 @@ public class TeamServiceImpl implements TeamService {
     @Transactional(readOnly = true)
     public List<Team> findAll() {
         log.debug("Request to get all Teams");
-        return teamRepository.findAllWithEagerRelationships();
+        return teamRepository.findAll();
     }
 
-
-    public Page<Team> findAllWithEagerRelationships(Pageable pageable) {
-        return teamRepository.findAllWithEagerRelationships(pageable);
-    }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Team> findOne(Long id) {
         log.debug("Request to get Team : {}", id);
-        return teamRepository.findOneWithEagerRelationships(id);
+        return teamRepository.findById(id);
     }
 
     @Override
