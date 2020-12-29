@@ -38,11 +38,11 @@ public class Coach implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private ContactInfo contactInfo;
+    private Team team;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Team team;
+    private ContactInfo contactInfo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -92,19 +92,6 @@ public class Coach implements Serializable {
         this.jerseySize = jerseySize;
     }
 
-    public ContactInfo getContactInfo() {
-        return contactInfo;
-    }
-
-    public Coach contactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
-        return this;
-    }
-
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
     public Team getTeam() {
         return team;
     }
@@ -116,6 +103,19 @@ public class Coach implements Serializable {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public ContactInfo getContactInfo() {
+        return contactInfo;
+    }
+
+    public Coach contactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
+        return this;
+    }
+
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

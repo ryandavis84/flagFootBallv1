@@ -34,11 +34,11 @@
             <column name="jersey_size" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="team_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_player_team_id" />
-            </column>
             <column name="contact_info_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_player_contact_info_id" />
+            </column>
+            <column name="team_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_player_team_id" />
             </column>
             <column name="team_id" type="bigint">
                 <constraints nullable="true" />

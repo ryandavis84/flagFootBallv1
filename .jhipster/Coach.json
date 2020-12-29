@@ -24,17 +24,17 @@
   "relationships": [
     {
       "relationshipType": "one-to-one",
-      "otherEntityName": "contactInfo",
+      "otherEntityName": "team",
       "otherEntityRelationshipName": "coach",
-      "relationshipName": "contactInfo",
+      "relationshipName": "team",
       "otherEntityField": "id",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
-      "otherEntityName": "team",
+      "otherEntityName": "contactInfo",
       "otherEntityRelationshipName": "coach",
-      "relationshipName": "team",
+      "relationshipName": "contactInfo",
       "otherEntityField": "id",
       "ownerSide": true
     }
