@@ -87,13 +87,13 @@ public class PlayerResource {
      */
     @GetMapping("/players")
     public List<Player> getAllPlayers(@RequestParam(required = false) String filter) {
-        if ("emergencycontact-is-null".equals(filter)) {
-            log.debug("REST request to get all Players where emergencyContact is null");
-            return playerService.findAllWhereEmergencyContactIsNull();
+        if ("id-is-null".equals(filter)) {
+            log.debug("REST request to get all Players where id is null");
+            return playerService.findAllWhereIdIsNull();
         }
-        if ("contactinfo-is-null".equals(filter)) {
-            log.debug("REST request to get all Players where contactInfo is null");
-            return playerService.findAllWhereContactInfoIsNull();
+        if ("id-is-null".equals(filter)) {
+            log.debug("REST request to get all Players where id is null");
+            return playerService.findAllWhereIdIsNull();
         }
         log.debug("REST request to get all Players");
         return playerService.findAll();

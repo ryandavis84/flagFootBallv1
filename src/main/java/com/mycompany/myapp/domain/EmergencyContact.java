@@ -32,11 +32,11 @@ public class EmergencyContact implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Player player;
+    private Player id;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Coach coach;
+    private Coach id;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -73,30 +73,30 @@ public class EmergencyContact implements Serializable {
         this.lastName = lastName;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player getId() {
+        return id;
     }
 
-    public EmergencyContact player(Player player) {
-        this.player = player;
+    public EmergencyContact id(Player player) {
+        this.id = player;
         return this;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setId(Player player) {
+        this.id = player;
     }
 
-    public Coach getCoach() {
-        return coach;
+    public Coach getId() {
+        return id;
     }
 
-    public EmergencyContact coach(Coach coach) {
-        this.coach = coach;
+    public EmergencyContact id(Coach coach) {
+        this.id = coach;
         return this;
     }
 
-    public void setCoach(Coach coach) {
-        this.coach = coach;
+    public void setId(Coach coach) {
+        this.id = coach;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

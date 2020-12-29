@@ -5,10 +5,10 @@ export interface IEmergencyContact {
   id?: number;
   firstName?: string;
   lastName?: string;
-  player?: IPlayer;
-  coach?: ICoach;
+  id?: IPlayer;
+  id?: ICoach;
 }
 
 export class EmergencyContact implements IEmergencyContact {
-  constructor(public id?: number, public firstName?: string, public lastName?: string, public player?: IPlayer, public coach?: ICoach) {}
+  constructor(public id?: number, public firstName?: string, public lastName?: string, public id?: IPlayer, public id?: ICoach) {}
 }

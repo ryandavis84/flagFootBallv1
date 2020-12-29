@@ -18,8 +18,8 @@
       },
       "firstName": "First Name",
       "lastName": "Last Name",
-      "player": "Player",
-      "coach": "Coach"
+      "id": "Id",
+      "id": "Id"
     }
   }
 }

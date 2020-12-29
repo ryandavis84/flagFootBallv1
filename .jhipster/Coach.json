@@ -28,14 +28,14 @@
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "team",
-      "otherEntityRelationshipName": "coach",
-      "relationshipName": "team"
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "id"
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "emergencyContact",
-      "otherEntityRelationshipName": "coach",
-      "relationshipName": "emergencyContact",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "id",
       "ownerSide": false
     }
   ],

@@ -17,11 +17,11 @@ import { PlayerService } from 'app/entities/player/player.service';
 })
 export class ContactInfoUpdateComponent implements OnInit {
   isSaving = false;
-  players: IPlayer[] = [];
+  ids: IPlayer[] = [];
 
   editForm = this.fb.group({
     id: [],
-    player: [],
+    id: [],
   });
 
   constructor(
@@ -36,24 +36,24 @@ export class ContactInfoUpdateComponent implements OnInit {
       this.updateForm(contactInfo);
 
       this.playerService
-        .query({ filter: 'contactinfo-is-null' })
+        .query({ filter: 'id-is-null' })
         .pipe(
           map((res: HttpResponse<IPlayer[]>) => {
             return res.body || [];
           })
         )
         .subscribe((resBody: IPlayer[]) => {
-          if (!contactInfo.player || !contactInfo.player.id) {
-            this.players = resBody;
+          if (!contactInfo.id || !contactInfo.id.id) {
+            this.ids = resBody;
           } else {
             this.playerService
-              .find(contactInfo.player.id)
+              .find(contactInfo.id.id)
               .pipe(
                 map((subRes: HttpResponse<IPlayer>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IPlayer[]) => (this.players = concatRes));
+              .subscribe((concatRes: IPlayer[]) => (this.ids = concatRes));
           }
         });
     });
@@ -62,7 +62,7 @@ export class ContactInfoUpdateComponent implements OnInit {
   updateForm(contactInfo: IContactInfo): void {
     this.editForm.patchValue({
       id: contactInfo.id,
-      player: contactInfo.player,
+      id: contactInfo.id,
     });
   }
 
@@ -84,7 +84,7 @@ export class ContactInfoUpdateComponent implements OnInit {
     return {
       ...new ContactInfo(),
       id: this.editForm.get(['id'])!.value,
-      player: this.editForm.get(['player'])!.value,
+      id: this.editForm.get(['id'])!.value,
     };
   }
 

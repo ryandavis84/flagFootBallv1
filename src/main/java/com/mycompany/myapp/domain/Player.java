@@ -45,15 +45,15 @@ public class Player implements Serializable {
     @Column(name = "age", nullable = false)
     private Integer age;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(mappedBy = "id")
     @JsonIgnore
-    private EmergencyContact emergencyContact;
+    private EmergencyContact id;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(mappedBy = "id")
     @JsonIgnore
-    private ContactInfo contactInfo;
+    private ContactInfo id;
 
-    @ManyToMany(mappedBy = "players")
+    @ManyToMany(mappedBy = "ids")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
     private Set<Team> ids = new HashSet<>();
@@ -132,30 +132,30 @@ public class Player implements Serializable {
         this.age = age;
     }
 
-    public EmergencyContact getEmergencyContact() {
-        return emergencyContact;
+    public EmergencyContact getId() {
+        return id;
     }
 
-    public Player emergencyContact(EmergencyContact emergencyContact) {
-        this.emergencyContact = emergencyContact;
+    public Player id(EmergencyContact emergencyContact) {
+        this.id = emergencyContact;
         return this;
     }
 
-    public void setEmergencyContact(EmergencyContact emergencyContact) {
-        this.emergencyContact = emergencyContact;
+    public void setId(EmergencyContact emergencyContact) {
+        this.id = emergencyContact;
     }
 
-    public ContactInfo getContactInfo() {
-        return contactInfo;
+    public ContactInfo getId() {
+        return id;
     }
 
-    public Player contactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
+    public Player id(ContactInfo contactInfo) {
+        this.id = contactInfo;
         return this;
     }
 
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
+    public void setId(ContactInfo contactInfo) {
+        this.id = contactInfo;
     }
 
     public Set<Team> getIds() {
@@ -169,13 +169,13 @@ public class Player implements Serializable {
 
     public Player addId(Team team) {
         this.ids.add(team);
-        team.getPlayers().add(this);
+        team.getIds().add(this);
         return this;
     }
 
     public Player removeId(Team team) {
         this.ids.remove(team);
-        team.getPlayers().remove(this);
+        team.getIds().remove(this);
         return this;
     }
 

@@ -24,11 +24,11 @@ public class ContactInfo implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Player player;
+    private Player id;
 
-    @OneToOne(mappedBy = "contactInfo")
+    @OneToOne(mappedBy = "id")
     @JsonIgnore
-    private Address address;
+    private Address id;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -39,30 +39,30 @@ public class ContactInfo implements Serializable {
         this.id = id;
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player getId() {
+        return id;
     }
 
-    public ContactInfo player(Player player) {
-        this.player = player;
+    public ContactInfo id(Player player) {
+        this.id = player;
         return this;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setId(Player player) {
+        this.id = player;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getId() {
+        return id;
     }
 
-    public ContactInfo address(Address address) {
-        this.address = address;
+    public ContactInfo id(Address address) {
+        this.id = address;
         return this;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setId(Address address) {
+        this.id = address;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

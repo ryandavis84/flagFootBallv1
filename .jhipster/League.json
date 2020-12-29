@@ -14,7 +14,7 @@
       "relationshipType": "many-to-many",
       "otherEntityName": "team",
       "otherEntityRelationshipName": "id",
-      "relationshipName": "team",
+      "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": true
     },
@@ -22,7 +22,7 @@
       "relationshipType": "many-to-many",
       "otherEntityName": "season",
       "otherEntityRelationshipName": "id",
-      "relationshipName": "season",
+      "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": true
     }

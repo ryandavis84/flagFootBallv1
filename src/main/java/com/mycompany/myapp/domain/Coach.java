@@ -40,13 +40,13 @@ public class Coach implements Serializable {
     @Column(name = "jersey_size", nullable = false)
     private JerseySize jerseySize;
 
-    @OneToMany(mappedBy = "coach")
+    @OneToMany(mappedBy = "id")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Team> teams = new HashSet<>();
+    private Set<Team> ids = new HashSet<>();
 
-    @OneToOne(mappedBy = "coach")
+    @OneToOne(mappedBy = "id")
     @JsonIgnore
-    private EmergencyContact emergencyContact;
+    private EmergencyContact id;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -96,42 +96,42 @@ public class Coach implements Serializable {
         this.jerseySize = jerseySize;
     }
 
-    public Set<Team> getTeams() {
-        return teams;
+    public Set<Team> getIds() {
+        return ids;
     }
 
-    public Coach teams(Set<Team> teams) {
-        this.teams = teams;
+    public Coach ids(Set<Team> teams) {
+        this.ids = teams;
         return this;
     }
 
-    public Coach addTeam(Team team) {
-        this.teams.add(team);
-        team.setCoach(this);
+    public Coach addId(Team team) {
+        this.ids.add(team);
+        team.setId(this);
         return this;
     }
 
-    public Coach removeTeam(Team team) {
-        this.teams.remove(team);
-        team.setCoach(null);
+    public Coach removeId(Team team) {
+        this.ids.remove(team);
+        team.setId(null);
         return this;
     }
 
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
+    public void setIds(Set<Team> teams) {
+        this.ids = teams;
     }
 
-    public EmergencyContact getEmergencyContact() {
-        return emergencyContact;
+    public EmergencyContact getId() {
+        return id;
     }
 
-    public Coach emergencyContact(EmergencyContact emergencyContact) {
-        this.emergencyContact = emergencyContact;
+    public Coach id(EmergencyContact emergencyContact) {
+        this.id = emergencyContact;
         return this;
     }
 
-    public void setEmergencyContact(EmergencyContact emergencyContact) {
-        this.emergencyContact = emergencyContact;
+    public void setId(EmergencyContact emergencyContact) {
+        this.id = emergencyContact;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

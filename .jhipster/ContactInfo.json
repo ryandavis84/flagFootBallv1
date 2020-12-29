@@ -5,16 +5,16 @@
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "player",
-      "otherEntityRelationshipName": "contactInfo",
-      "relationshipName": "player",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "address",
-      "otherEntityRelationshipName": "contactInfo",
-      "relationshipName": "address",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "id",
       "ownerSide": false
     }
   ],

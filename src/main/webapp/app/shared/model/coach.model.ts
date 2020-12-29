@@ -7,8 +7,8 @@ export interface ICoach {
   firstName?: string;
   lastName?: string;
   jerseySize?: JerseySize;
-  teams?: ITeam[];
-  emergencyContact?: IEmergencyContact;
+  ids?: ITeam[];
+  id?: IEmergencyContact;
 }
 
 export class Coach implements ICoach {
@@ -17,7 +17,7 @@ export class Coach implements ICoach {
     public firstName?: string,
     public lastName?: string,
     public jerseySize?: JerseySize,
-    public teams?: ITeam[],
-    public emergencyContact?: IEmergencyContact
+    public ids?: ITeam[],
+    public id?: IEmergencyContact
   ) {}
 }

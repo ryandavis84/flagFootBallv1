@@ -26,8 +26,8 @@ export class LeagueUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    teams: [],
-    seasons: [],
+    ids: [],
+    ids: [],
   });
 
   constructor(
@@ -52,8 +52,8 @@ export class LeagueUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: league.id,
       name: league.name,
-      teams: league.teams,
-      seasons: league.seasons,
+      ids: league.ids,
+      ids: league.ids,
     });
   }
 
@@ -76,8 +76,8 @@ export class LeagueUpdateComponent implements OnInit {
       ...new League(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      teams: this.editForm.get(['teams'])!.value,
-      seasons: this.editForm.get(['seasons'])!.value,
+      ids: this.editForm.get(['ids'])!.value,
+      ids: this.editForm.get(['ids'])!.value,
     };
   }
 

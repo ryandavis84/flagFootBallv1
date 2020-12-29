@@ -86,9 +86,9 @@ public class ContactInfoResource {
      */
     @GetMapping("/contact-infos")
     public List<ContactInfo> getAllContactInfos(@RequestParam(required = false) String filter) {
-        if ("address-is-null".equals(filter)) {
-            log.debug("REST request to get all ContactInfos where address is null");
-            return contactInfoService.findAllWhereAddressIsNull();
+        if ("id-is-null".equals(filter)) {
+            log.debug("REST request to get all ContactInfos where id is null");
+            return contactInfoService.findAllWhereIdIsNull();
         }
         log.debug("REST request to get all ContactInfos");
         return contactInfoService.findAll();

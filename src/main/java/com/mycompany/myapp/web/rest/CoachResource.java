@@ -87,9 +87,9 @@ public class CoachResource {
      */
     @GetMapping("/coaches")
     public List<Coach> getAllCoaches(@RequestParam(required = false) String filter) {
-        if ("emergencycontact-is-null".equals(filter)) {
-            log.debug("REST request to get all Coachs where emergencyContact is null");
-            return coachService.findAllWhereEmergencyContactIsNull();
+        if ("id-is-null".equals(filter)) {
+            log.debug("REST request to get all Coachs where id is null");
+            return coachService.findAllWhereIdIsNull();
         }
         log.debug("REST request to get all Coaches");
         return coachService.findAll();

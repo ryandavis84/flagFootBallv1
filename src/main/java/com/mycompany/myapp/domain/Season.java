@@ -29,7 +29,7 @@ public class Season implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "seasons")
+    @ManyToMany(mappedBy = "ids")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
     private Set<League> ids = new HashSet<>();
@@ -67,13 +67,13 @@ public class Season implements Serializable {
 
     public Season addId(League league) {
         this.ids.add(league);
-        league.getSeasons().add(this);
+        league.getIds().add(this);
         return this;
     }
 
     public Season removeId(League league) {
         this.ids.remove(league);
-        league.getSeasons().remove(this);
+        league.getIds().remove(this);
         return this;
     }
 

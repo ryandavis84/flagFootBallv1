@@ -25,8 +25,8 @@
 
     <changeSet id="20201229205927-1-relations" author="jhipster">
 
-        <createTable tableName="league_team">
-            <column name="team_id" type="bigint">
+        <createTable tableName="league_id">
+            <column name="id_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="league_id" type="bigint">
@@ -34,10 +34,10 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="league_id, team_id" tableName="league_team"/>
+        <addPrimaryKey columnNames="league_id, id_id" tableName="league_id"/>
         
-        <createTable tableName="league_season">
-            <column name="season_id" type="bigint">
+        <createTable tableName="league_id">
+            <column name="id_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="league_id" type="bigint">
@@ -45,7 +45,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="league_id, season_id" tableName="league_season"/>
+        <addPrimaryKey columnNames="league_id, id_id" tableName="league_id"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

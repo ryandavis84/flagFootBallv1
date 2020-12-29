@@ -24,16 +24,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="flagFootBallv1App.league.team" for="field_teams">Team</label>
-                    <select class="form-control" id="field_teams" multiple name="teams" formControlName="teams">
-                        <option [ngValue]="getSelected(editForm.get('teams')!.value, teamOption)" *ngFor="let teamOption of teams; trackBy: trackById">{{ teamOption.id }}</option>
+                    <label jhiTranslate="flagFootBallv1App.league.id" for="field_ids">Id</label>
+                    <select class="form-control" id="field_ids" multiple name="ids" formControlName="ids">
+                        <option [ngValue]="getSelected(editForm.get('ids')!.value, teamOption)" *ngFor="let teamOption of teams; trackBy: trackById">{{ teamOption.id }}</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="flagFootBallv1App.league.season" for="field_seasons">Season</label>
-                    <select class="form-control" id="field_seasons" multiple name="seasons" formControlName="seasons">
-                        <option [ngValue]="getSelected(editForm.get('seasons')!.value, seasonOption)" *ngFor="let seasonOption of seasons; trackBy: trackById">{{ seasonOption.id }}</option>
+                    <label jhiTranslate="flagFootBallv1App.league.id" for="field_ids">Id</label>
+                    <select class="form-control" id="field_ids" multiple name="ids" formControlName="ids">
+                        <option [ngValue]="getSelected(editForm.get('ids')!.value, seasonOption)" *ngFor="let seasonOption of seasons; trackBy: trackById">{{ seasonOption.id }}</option>
                     </select>
                 </div>
             </div>

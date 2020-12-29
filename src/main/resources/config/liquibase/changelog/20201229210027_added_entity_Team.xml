@@ -19,7 +19,7 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="coach_id" type="bigint">
+            <column name="id_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -28,8 +28,8 @@
 
     <changeSet id="20201229210027-1-relations" author="jhipster">
 
-        <createTable tableName="team_player">
-            <column name="player_id" type="bigint">
+        <createTable tableName="team_id">
+            <column name="id_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="team_id" type="bigint">
@@ -37,7 +37,7 @@
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="team_id, player_id" tableName="team_player"/>
+        <addPrimaryKey columnNames="team_id, id_id" tableName="team_id"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

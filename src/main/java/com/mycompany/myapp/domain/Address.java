@@ -40,7 +40,7 @@ public class Address implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private ContactInfo contactInfo;
+    private ContactInfo id;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -103,17 +103,17 @@ public class Address implements Serializable {
         this.state = state;
     }
 
-    public ContactInfo getContactInfo() {
-        return contactInfo;
+    public ContactInfo getId() {
+        return id;
     }
 
-    public Address contactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
+    public Address id(ContactInfo contactInfo) {
+        this.id = contactInfo;
         return this;
     }
 
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
+    public void setId(ContactInfo contactInfo) {
+        this.id = contactInfo;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

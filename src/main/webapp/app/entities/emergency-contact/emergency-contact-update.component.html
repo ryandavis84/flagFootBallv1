@@ -36,18 +36,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.emergencyContact.player" for="field_player">Player</label>
-                    <select class="form-control" id="field_player" name="player" formControlName="player">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.emergencyContact.id" for="field_id">Id</label>
+                    <select class="form-control" id="field_id" name="id" formControlName="id">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="playerOption.id === editForm.get('player')!.value?.id ? editForm.get('player')!.value : playerOption" *ngFor="let playerOption of players; trackBy: trackById">{{ playerOption.id }}</option>
+                        <option [ngValue]="playerOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : playerOption" *ngFor="let playerOption of ids; trackBy: trackById">{{ playerOption.id }}</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.emergencyContact.coach" for="field_coach">Coach</label>
-                    <select class="form-control" id="field_coach" name="coach" formControlName="coach">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.emergencyContact.id" for="field_id">Id</label>
+                    <select class="form-control" id="field_id" name="id" formControlName="id">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="coachOption.id === editForm.get('coach')!.value?.id ? editForm.get('coach')!.value : coachOption" *ngFor="let coachOption of coaches; trackBy: trackById">{{ coachOption.id }}</option>
+                        <option [ngValue]="coachOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : coachOption" *ngFor="let coachOption of ids; trackBy: trackById">{{ coachOption.id }}</option>
                     </select>
                 </div>
             </div>

@@ -17,13 +17,13 @@ import java.util.Optional;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
-    @Query(value = "select distinct team from Team team left join fetch team.players",
+    @Query(value = "select distinct team from Team team left join fetch team.ids",
         countQuery = "select count(distinct team) from Team team")
     Page<Team> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct team from Team team left join fetch team.players")
+    @Query("select distinct team from Team team left join fetch team.ids")
     List<Team> findAllWithEagerRelationships();
 
-    @Query("select team from Team team left join fetch team.players where team.id =:id")
+    @Query("select team from Team team left join fetch team.ids where team.id =:id")
     Optional<Team> findOneWithEagerRelationships(@Param("id") Long id);
 }

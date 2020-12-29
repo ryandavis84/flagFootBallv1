@@ -45,15 +45,15 @@ public class CoachServiceImpl implements CoachService {
 
 
     /**
-     *  Get all the coaches where EmergencyContact is {@code null}.
+     *  Get all the coaches where Id is {@code null}.
      *  @return the list of entities.
      */
     @Transactional(readOnly = true) 
-    public List<Coach> findAllWhereEmergencyContactIsNull() {
-        log.debug("Request to get all coaches where EmergencyContact is null");
+    public List<Coach> findAllWhereIdIsNull() {
+        log.debug("Request to get all coaches where Id is null");
         return StreamSupport
             .stream(coachRepository.findAll().spliterator(), false)
-            .filter(coach -> coach.getEmergencyContact() == null)
+            .filter(coach -> coach.getId() == null)
             .collect(Collectors.toList());
     }
 

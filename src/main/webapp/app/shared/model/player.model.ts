@@ -9,8 +9,8 @@ export interface IPlayer {
   dob?: string;
   grade?: number;
   age?: number;
-  emergencyContact?: IEmergencyContact;
-  contactInfo?: IContactInfo;
+  id?: IEmergencyContact;
+  id?: IContactInfo;
   ids?: ITeam[];
 }
 
@@ -22,8 +22,8 @@ export class Player implements IPlayer {
     public dob?: string,
     public grade?: number,
     public age?: number,
-    public emergencyContact?: IEmergencyContact,
-    public contactInfo?: IContactInfo,
+    public id?: IEmergencyContact,
+    public id?: IContactInfo,
     public ids?: ITeam[]
   ) {}
 }

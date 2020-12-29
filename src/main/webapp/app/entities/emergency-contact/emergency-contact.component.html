@@ -25,8 +25,8 @@
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.emergencyContact.firstName">First Name</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.emergencyContact.lastName">Last Name</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.emergencyContact.player">Player</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.emergencyContact.coach">Coach</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.emergencyContact.id">Id</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.emergencyContact.id">Id</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -36,13 +36,13 @@
                     <td>{{ emergencyContact.firstName }}</td>
                     <td>{{ emergencyContact.lastName }}</td>
                     <td>
-                        <div *ngIf="emergencyContact.player">
-                            <a [routerLink]="['/player', emergencyContact.player?.id, 'view']" >{{ emergencyContact.player?.id }}</a>
+                        <div *ngIf="emergencyContact.id">
+                            <a [routerLink]="['/player', emergencyContact.id?.id, 'view']" >{{ emergencyContact.id?.id }}</a>
                         </div>
                     </td>
                     <td>
-                        <div *ngIf="emergencyContact.coach">
-                            <a [routerLink]="['/coach', emergencyContact.coach?.id, 'view']" >{{ emergencyContact.coach?.id }}</a>
+                        <div *ngIf="emergencyContact.id">
+                            <a [routerLink]="['/coach', emergencyContact.id?.id, 'view']" >{{ emergencyContact.id?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">
