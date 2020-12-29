@@ -12,21 +12,21 @@ entity Team {
 }
 
 relationship ManyToMany {
-	Team{player} to Player{id}
-    League{team} to Team{id}
-    League{season} to Season{id}
+	Team{id} to Player{id}
+    League{id} to Team{id}
+    League{id} to Season{id}
 }
 
 relationship OneToMany {
-	Coach{team} to Team{coach}
+	Coach{id} to Team{id}
 }
 
 relationship OneToOne {
-	EmergencyContact{player} to Player{emergencyContact}
-    EmergencyContact{coach} to Coach{emergencyContact}
-    ContactInfo{player} to Player{contactInfo}
-    ContactInfo{player} to Player{contactInfo}
-    Address{contactInfo} to ContactInfo{address}
+	EmergencyContact{id} to Player{id}
+    EmergencyContact{id} to Coach{id}
+    ContactInfo{id} to Player{id}
+    ContactInfo{id} to Player{id}
+    Address{id} to ContactInfo{id}
 }
 
 entity Player {
