@@ -20,8 +20,7 @@
       "street2": "Street 2",
       "city": "City",
       "state": "State",
-      "phoneNumber": "Phone Number",
-      "contactInfo": "Contact Info"
+      "phoneNumber": "Phone Number"
     }
   }
 }

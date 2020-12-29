@@ -18,34 +18,6 @@
       "relationshipName": "addressId",
       "otherEntityField": "id",
       "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "player",
-      "otherEntityRelationshipName": "emergencyId",
-      "relationshipName": "emergencyContact",
-      "ownerSide": false
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "coach",
-      "otherEntityRelationshipName": "emergencyId",
-      "relationshipName": "emergencyContact",
-      "ownerSide": false
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "player",
-      "otherEntityRelationshipName": "personalId",
-      "relationshipName": "personalContact",
-      "ownerSide": false
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "coach",
-      "otherEntityRelationshipName": "personalId",
-      "relationshipName": "personalContact",
-      "ownerSide": false
     }
   ],
   "changelogDate": "20201229210327",

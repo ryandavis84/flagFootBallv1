@@ -41,7 +41,7 @@ export class CoachUpdateComponent implements OnInit {
       this.updateForm(coach);
 
       this.contactInfoService
-        .query({ filter: 'emergencycontact-is-null' })
+        .query({ filter: 'coach-is-null' })
         .pipe(
           map((res: HttpResponse<IContactInfo[]>) => {
             return res.body || [];
@@ -63,7 +63,7 @@ export class CoachUpdateComponent implements OnInit {
         });
 
       this.contactInfoService
-        .query({ filter: 'personalcontact-is-null' })
+        .query({ filter: 'coach-is-null' })
         .pipe(
           map((res: HttpResponse<IContactInfo[]>) => {
             return res.body || [];
