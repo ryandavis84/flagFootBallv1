@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -25,6 +26,10 @@ public class ContactInfo implements Serializable {
     @JoinColumn(unique = true)
     private Player player;
 
+    @OneToOne(mappedBy = "contactInfo")
+    @JsonIgnore
+    private Address address;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -45,6 +50,19 @@ public class ContactInfo implements Serializable {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public ContactInfo address(Address address) {
+        this.address = address;
+        return this;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

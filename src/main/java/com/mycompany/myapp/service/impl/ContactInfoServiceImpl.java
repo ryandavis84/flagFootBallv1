@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing {@link ContactInfo}.
@@ -40,6 +42,20 @@ public class ContactInfoServiceImpl implements ContactInfoService {
         return contactInfoRepository.findAll();
     }
 
+
+
+    /**
+     *  Get all the contactInfos where Address is {@code null}.
+     *  @return the list of entities.
+     */
+    @Transactional(readOnly = true) 
+    public List<ContactInfo> findAllWhereAddressIsNull() {
+        log.debug("Request to get all contactInfos where Address is null");
+        return StreamSupport
+            .stream(contactInfoRepository.findAll().spliterator(), false)
+            .filter(contactInfo -> contactInfo.getAddress() == null)
+            .collect(Collectors.toList());
+    }
 
     @Override
     @Transactional(readOnly = true)

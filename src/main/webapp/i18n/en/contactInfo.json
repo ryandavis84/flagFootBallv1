@@ -16,7 +16,8 @@
       "detail": {
         "title": "Contact Info"
       },
-      "player": "Player"
+      "player": "Player",
+      "address": "Address"
     }
   }
 }

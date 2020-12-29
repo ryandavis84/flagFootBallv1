@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -42,6 +43,14 @@ public class Player implements Serializable {
     @NotNull
     @Column(name = "age", nullable = false)
     private Integer age;
+
+    @OneToOne(mappedBy = "player")
+    @JsonIgnore
+    private EmergencyContact emergencyContact;
+
+    @OneToOne(mappedBy = "player")
+    @JsonIgnore
+    private ContactInfo contactInfo;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "players", allowSetters = true)
@@ -119,6 +128,32 @@ public class Player implements Serializable {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public EmergencyContact getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public Player emergencyContact(EmergencyContact emergencyContact) {
+        this.emergencyContact = emergencyContact;
+        return this;
+    }
+
+    public void setEmergencyContact(EmergencyContact emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public ContactInfo getContactInfo() {
+        return contactInfo;
+    }
+
+    public Player contactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
+        return this;
+    }
+
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
     }
 
     public Team getTeam() {

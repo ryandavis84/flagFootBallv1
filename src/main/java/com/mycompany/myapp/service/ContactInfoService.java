@@ -24,6 +24,12 @@ public interface ContactInfoService {
      * @return the list of entities.
      */
     List<ContactInfo> findAll();
+    /**
+     * Get all the ContactInfoDTO where Address is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<ContactInfo> findAllWhereAddressIsNull();
 
 
     /**
