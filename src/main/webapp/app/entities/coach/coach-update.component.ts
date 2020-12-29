@@ -17,16 +17,16 @@ import { ContactInfoService } from 'app/entities/contact-info/contact-info.servi
 })
 export class CoachUpdateComponent implements OnInit {
   isSaving = false;
-  ids: IContactInfo[] = [];
-  ids: IContactInfo[] = [];
+  emergencyids: IContactInfo[] = [];
+  personalids: IContactInfo[] = [];
 
   editForm = this.fb.group({
     id: [],
     firstName: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
     jerseySize: [null, [Validators.required]],
-    id: [],
-    id: [],
+    emergencyId: [],
+    personalId: [],
   });
 
   constructor(
@@ -48,17 +48,17 @@ export class CoachUpdateComponent implements OnInit {
           })
         )
         .subscribe((resBody: IContactInfo[]) => {
-          if (!coach.id || !coach.id.id) {
-            this.ids = resBody;
+          if (!coach.emergencyId || !coach.emergencyId.id) {
+            this.emergencyids = resBody;
           } else {
             this.contactInfoService
-              .find(coach.id.id)
+              .find(coach.emergencyId.id)
               .pipe(
                 map((subRes: HttpResponse<IContactInfo>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IContactInfo[]) => (this.ids = concatRes));
+              .subscribe((concatRes: IContactInfo[]) => (this.emergencyids = concatRes));
           }
         });
 
@@ -70,17 +70,17 @@ export class CoachUpdateComponent implements OnInit {
           })
         )
         .subscribe((resBody: IContactInfo[]) => {
-          if (!coach.id || !coach.id.id) {
-            this.ids = resBody;
+          if (!coach.personalId || !coach.personalId.id) {
+            this.personalids = resBody;
           } else {
             this.contactInfoService
-              .find(coach.id.id)
+              .find(coach.personalId.id)
               .pipe(
                 map((subRes: HttpResponse<IContactInfo>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IContactInfo[]) => (this.ids = concatRes));
+              .subscribe((concatRes: IContactInfo[]) => (this.personalids = concatRes));
           }
         });
     });
@@ -92,8 +92,8 @@ export class CoachUpdateComponent implements OnInit {
       firstName: coach.firstName,
       lastName: coach.lastName,
       jerseySize: coach.jerseySize,
-      id: coach.id,
-      id: coach.id,
+      emergencyId: coach.emergencyId,
+      personalId: coach.personalId,
     });
   }
 
@@ -118,8 +118,8 @@ export class CoachUpdateComponent implements OnInit {
       firstName: this.editForm.get(['firstName'])!.value,
       lastName: this.editForm.get(['lastName'])!.value,
       jerseySize: this.editForm.get(['jerseySize'])!.value,
-      id: this.editForm.get(['id'])!.value,
-      id: this.editForm.get(['id'])!.value,
+      emergencyId: this.editForm.get(['emergencyId'])!.value,
+      personalId: this.editForm.get(['personalId'])!.value,
     };
   }
 

@@ -12,8 +12,8 @@ export interface IPlayer {
   grade?: number;
   age?: number;
   jerseySize?: JerseySize;
-  id?: IContactInfo;
-  id?: IContactInfo;
+  emergencyId?: IContactInfo;
+  personalId?: IContactInfo;
   team?: ITeam;
   league?: ILeague;
   season?: ISeason;
@@ -28,8 +28,8 @@ export class Player implements IPlayer {
     public grade?: number,
     public age?: number,
     public jerseySize?: JerseySize,
-    public id?: IContactInfo,
-    public id?: IContactInfo,
+    public emergencyId?: IContactInfo,
+    public personalId?: IContactInfo,
     public team?: ITeam,
     public league?: ILeague,
     public season?: ISeason

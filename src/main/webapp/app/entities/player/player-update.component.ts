@@ -25,8 +25,8 @@ type SelectableEntity = IContactInfo | ITeam | ILeague | ISeason;
 })
 export class PlayerUpdateComponent implements OnInit {
   isSaving = false;
-  ids: IContactInfo[] = [];
-  ids: IContactInfo[] = [];
+  emergencyids: IContactInfo[] = [];
+  personalids: IContactInfo[] = [];
   teams: ITeam[] = [];
   leagues: ILeague[] = [];
   seasons: ISeason[] = [];
@@ -39,8 +39,8 @@ export class PlayerUpdateComponent implements OnInit {
     grade: [null, [Validators.required]],
     age: [null, [Validators.required]],
     jerseySize: [null, [Validators.required]],
-    id: [],
-    id: [],
+    emergencyId: [],
+    personalId: [],
     team: [],
     league: [],
     season: [],
@@ -68,17 +68,17 @@ export class PlayerUpdateComponent implements OnInit {
           })
         )
         .subscribe((resBody: IContactInfo[]) => {
-          if (!player.id || !player.id.id) {
-            this.ids = resBody;
+          if (!player.emergencyId || !player.emergencyId.id) {
+            this.emergencyids = resBody;
           } else {
             this.contactInfoService
-              .find(player.id.id)
+              .find(player.emergencyId.id)
               .pipe(
                 map((subRes: HttpResponse<IContactInfo>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IContactInfo[]) => (this.ids = concatRes));
+              .subscribe((concatRes: IContactInfo[]) => (this.emergencyids = concatRes));
           }
         });
 
@@ -90,17 +90,17 @@ export class PlayerUpdateComponent implements OnInit {
           })
         )
         .subscribe((resBody: IContactInfo[]) => {
-          if (!player.id || !player.id.id) {
-            this.ids = resBody;
+          if (!player.personalId || !player.personalId.id) {
+            this.personalids = resBody;
           } else {
             this.contactInfoService
-              .find(player.id.id)
+              .find(player.personalId.id)
               .pipe(
                 map((subRes: HttpResponse<IContactInfo>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IContactInfo[]) => (this.ids = concatRes));
+              .subscribe((concatRes: IContactInfo[]) => (this.personalids = concatRes));
           }
         });
 
@@ -121,8 +121,8 @@ export class PlayerUpdateComponent implements OnInit {
       grade: player.grade,
       age: player.age,
       jerseySize: player.jerseySize,
-      id: player.id,
-      id: player.id,
+      emergencyId: player.emergencyId,
+      personalId: player.personalId,
       team: player.team,
       league: player.league,
       season: player.season,
@@ -153,8 +153,8 @@ export class PlayerUpdateComponent implements OnInit {
       grade: this.editForm.get(['grade'])!.value,
       age: this.editForm.get(['age'])!.value,
       jerseySize: this.editForm.get(['jerseySize'])!.value,
-      id: this.editForm.get(['id'])!.value,
-      id: this.editForm.get(['id'])!.value,
+      emergencyId: this.editForm.get(['emergencyId'])!.value,
+      personalId: this.editForm.get(['personalId'])!.value,
       team: this.editForm.get(['team'])!.value,
       league: this.editForm.get(['league'])!.value,
       season: this.editForm.get(['season'])!.value,

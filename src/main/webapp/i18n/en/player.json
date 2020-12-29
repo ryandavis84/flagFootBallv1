@@ -22,8 +22,8 @@
       "grade": "Grade",
       "age": "Age",
       "jerseySize": "Jersey Size",
-      "id": "Id",
-      "id": "Id",
+      "emergencyId": "Emergency Id",
+      "personalId": "Personal Id",
       "team": "Team",
       "league": "League",
       "season": "Season"
