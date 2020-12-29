@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link com.mycompany.myapp.domain.Coach}.
@@ -81,10 +82,15 @@ public class CoachResource {
     /**
      * {@code GET  /coaches} : get all the coaches.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of coaches in body.
      */
     @GetMapping("/coaches")
-    public List<Coach> getAllCoaches() {
+    public List<Coach> getAllCoaches(@RequestParam(required = false) String filter) {
+        if ("emergencycontact-is-null".equals(filter)) {
+            log.debug("REST request to get all Coachs where emergencyContact is null");
+            return coachService.findAllWhereEmergencyContactIsNull();
+        }
         log.debug("REST request to get all Coaches");
         return coachService.findAll();
     }

@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link com.mycompany.myapp.domain.Player}.
@@ -81,10 +82,19 @@ public class PlayerResource {
     /**
      * {@code GET  /players} : get all the players.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of players in body.
      */
     @GetMapping("/players")
-    public List<Player> getAllPlayers() {
+    public List<Player> getAllPlayers(@RequestParam(required = false) String filter) {
+        if ("emergencycontact-is-null".equals(filter)) {
+            log.debug("REST request to get all Players where emergencyContact is null");
+            return playerService.findAllWhereEmergencyContactIsNull();
+        }
+        if ("contactinfo-is-null".equals(filter)) {
+            log.debug("REST request to get all Players where contactInfo is null");
+            return playerService.findAllWhereContactInfoIsNull();
+        }
         log.debug("REST request to get all Players");
         return playerService.findAll();
     }

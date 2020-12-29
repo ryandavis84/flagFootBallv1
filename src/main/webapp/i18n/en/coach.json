@@ -19,6 +19,7 @@
       "firstName": "First Name",
       "lastName": "Last Name",
       "jerseySize": "Jersey Size",
+      "emergencyContact": "Emergency Contact",
       "team": "Team"
     }
   }

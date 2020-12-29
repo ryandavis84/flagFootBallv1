@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 /**
  * REST controller for managing {@link com.mycompany.myapp.domain.ContactInfo}.
@@ -80,10 +81,15 @@ public class ContactInfoResource {
     /**
      * {@code GET  /contact-infos} : get all the contactInfos.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of contactInfos in body.
      */
     @GetMapping("/contact-infos")
-    public List<ContactInfo> getAllContactInfos() {
+    public List<ContactInfo> getAllContactInfos(@RequestParam(required = false) String filter) {
+        if ("address-is-null".equals(filter)) {
+            log.debug("REST request to get all ContactInfos where address is null");
+            return contactInfoService.findAllWhereAddressIsNull();
+        }
         log.debug("REST request to get all ContactInfos");
         return contactInfoService.findAll();
     }

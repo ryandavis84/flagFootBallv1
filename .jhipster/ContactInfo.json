@@ -9,6 +9,13 @@
       "relationshipName": "player",
       "otherEntityField": "id",
       "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "address",
+      "otherEntityRelationshipName": "contactInfo",
+      "relationshipName": "address",
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201229210327",

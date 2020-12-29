@@ -26,6 +26,13 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "emergencyContact",
+      "otherEntityRelationshipName": "coach",
+      "relationshipName": "emergencyContact",
+      "ownerSide": false
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "team",
       "otherEntityRelationshipName": "coach",

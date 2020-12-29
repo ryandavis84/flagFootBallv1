@@ -24,6 +24,12 @@ public interface CoachService {
      * @return the list of entities.
      */
     List<Coach> findAll();
+    /**
+     * Get all the CoachDTO where EmergencyContact is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<Coach> findAllWhereEmergencyContactIsNull();
 
 
     /**

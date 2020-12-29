@@ -39,6 +39,20 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "emergencyContact",
+      "otherEntityRelationshipName": "player",
+      "relationshipName": "emergencyContact",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "contactInfo",
+      "otherEntityRelationshipName": "player",
+      "relationshipName": "contactInfo",
+      "ownerSide": false
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "team",
       "otherEntityRelationshipName": "player",
