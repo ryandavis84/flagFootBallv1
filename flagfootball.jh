@@ -23,10 +23,10 @@ relationship OneToMany {
 }
 
 relationship OneToOne {
-	Player{id} to ContactInfo{emergencyContact}
-    Coach{id} to ContactInfo{emergencyContact}
-    Player{id} to ContactInfo{personalContact}
-    Coach{id} to ContactInfo{personalContact}
+	Player{emergencyId} to ContactInfo{emergencyContact}
+    Coach{emergencyId} to ContactInfo{emergencyContact}
+    Player{personalId} to ContactInfo{personalContact}
+    Coach{personalId} to ContactInfo{personalContact}
   	ContactInfo{id} to Address
 }
 

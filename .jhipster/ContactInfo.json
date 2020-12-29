@@ -22,28 +22,28 @@
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "player",
-      "otherEntityRelationshipName": "id",
+      "otherEntityRelationshipName": "emergencyId",
       "relationshipName": "emergencyContact",
       "ownerSide": false
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "coach",
-      "otherEntityRelationshipName": "id",
+      "otherEntityRelationshipName": "emergencyId",
       "relationshipName": "emergencyContact",
       "ownerSide": false
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "player",
-      "otherEntityRelationshipName": "id",
+      "otherEntityRelationshipName": "personalId",
       "relationshipName": "personalContact",
       "ownerSide": false
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "coach",
-      "otherEntityRelationshipName": "id",
+      "otherEntityRelationshipName": "personalId",
       "relationshipName": "personalContact",
       "ownerSide": false
     }

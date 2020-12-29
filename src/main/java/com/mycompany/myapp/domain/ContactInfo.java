@@ -34,19 +34,19 @@ public class ContactInfo implements Serializable {
     @JoinColumn(unique = true)
     private Address id;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne(mappedBy = "emergencyId")
     @JsonIgnore
     private Player emergencyContact;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne(mappedBy = "emergencyId")
     @JsonIgnore
     private Coach emergencyContact;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne(mappedBy = "personalId")
     @JsonIgnore
     private Player personalContact;
 
-    @OneToOne(mappedBy = "id")
+    @OneToOne(mappedBy = "personalId")
     @JsonIgnore
     private Coach personalContact;
 

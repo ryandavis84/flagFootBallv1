@@ -41,11 +41,11 @@ public class Coach implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private ContactInfo id;
+    private ContactInfo emergencyId;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private ContactInfo id;
+    private ContactInfo personalId;
 
     @OneToMany(mappedBy = "coach")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -99,30 +99,30 @@ public class Coach implements Serializable {
         this.jerseySize = jerseySize;
     }
 
-    public ContactInfo getId() {
-        return id;
+    public ContactInfo getEmergencyId() {
+        return emergencyId;
     }
 
-    public Coach id(ContactInfo contactInfo) {
-        this.id = contactInfo;
+    public Coach emergencyId(ContactInfo contactInfo) {
+        this.emergencyId = contactInfo;
         return this;
     }
 
-    public void setId(ContactInfo contactInfo) {
-        this.id = contactInfo;
+    public void setEmergencyId(ContactInfo contactInfo) {
+        this.emergencyId = contactInfo;
     }
 
-    public ContactInfo getId() {
-        return id;
+    public ContactInfo getPersonalId() {
+        return personalId;
     }
 
-    public Coach id(ContactInfo contactInfo) {
-        this.id = contactInfo;
+    public Coach personalId(ContactInfo contactInfo) {
+        this.personalId = contactInfo;
         return this;
     }
 
-    public void setId(ContactInfo contactInfo) {
-        this.id = contactInfo;
+    public void setPersonalId(ContactInfo contactInfo) {
+        this.personalId = contactInfo;
     }
 
     public Set<Team> getTeamIds() {

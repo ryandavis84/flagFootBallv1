@@ -50,7 +50,7 @@
       "relationshipType": "one-to-one",
       "otherEntityName": "contactInfo",
       "otherEntityRelationshipName": "emergencyContact",
-      "relationshipName": "id",
+      "relationshipName": "emergencyId",
       "otherEntityField": "id",
       "ownerSide": true
     },
@@ -58,7 +58,7 @@
       "relationshipType": "one-to-one",
       "otherEntityName": "contactInfo",
       "otherEntityRelationshipName": "personalContact",
-      "relationshipName": "id",
+      "relationshipName": "personalId",
       "otherEntityField": "id",
       "ownerSide": true
     },

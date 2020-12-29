@@ -29,8 +29,8 @@
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.grade">Grade</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.age">Age</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.jerseySize">Jersey Size</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.id">Id</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.id">Id</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.emergencyId">Emergency Id</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.personalId">Personal Id</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.team">Team</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.league">League</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.season">Season</span></th>
@@ -47,13 +47,13 @@
                     <td>{{ player.age }}</td>
                     <td jhiTranslate="{{ 'flagFootBallv1App.JerseySize.' + player.jerseySize }}">{{ player.jerseySize }}</td>
                     <td>
-                        <div *ngIf="player.id">
-                            <a [routerLink]="['/contact-info', player.id?.id, 'view']" >{{ player.id?.id }}</a>
+                        <div *ngIf="player.emergencyId">
+                            <a [routerLink]="['/contact-info', player.emergencyId?.id, 'view']" >{{ player.emergencyId?.id }}</a>
                         </div>
                     </td>
                     <td>
-                        <div *ngIf="player.id">
-                            <a [routerLink]="['/contact-info', player.id?.id, 'view']" >{{ player.id?.id }}</a>
+                        <div *ngIf="player.personalId">
+                            <a [routerLink]="['/contact-info', player.personalId?.id, 'view']" >{{ player.personalId?.id }}</a>
                         </div>
                     </td>
                     <td>

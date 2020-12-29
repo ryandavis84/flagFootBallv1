@@ -32,16 +32,16 @@
                 <dd>
                     <span jhiTranslate="{{ 'flagFootBallv1App.JerseySize.' + player.jerseySize }}">{{ player.jerseySize }}</span>
                 </dd>
-                <dt><span jhiTranslate="flagFootBallv1App.player.id">Id</span></dt>
+                <dt><span jhiTranslate="flagFootBallv1App.player.emergencyId">Emergency Id</span></dt>
                 <dd>
-                    <div *ngIf="player.id">
-                        <a [routerLink]="['/contact-info', player.id?.id, 'view']">{{ player.id?.id }}</a>
+                    <div *ngIf="player.emergencyId">
+                        <a [routerLink]="['/contact-info', player.emergencyId?.id, 'view']">{{ player.emergencyId?.id }}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="flagFootBallv1App.player.id">Id</span></dt>
+                <dt><span jhiTranslate="flagFootBallv1App.player.personalId">Personal Id</span></dt>
                 <dd>
-                    <div *ngIf="player.id">
-                        <a [routerLink]="['/contact-info', player.id?.id, 'view']">{{ player.id?.id }}</a>
+                    <div *ngIf="player.personalId">
+                        <a [routerLink]="['/contact-info', player.personalId?.id, 'view']">{{ player.personalId?.id }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="flagFootBallv1App.player.team">Team</span></dt>
