@@ -17,12 +17,12 @@ import { AddressService } from 'app/entities/address/address.service';
 })
 export class ContactInfoUpdateComponent implements OnInit {
   isSaving = false;
-  ids: IAddress[] = [];
+  addressids: IAddress[] = [];
 
   editForm = this.fb.group({
     id: [],
     type: [null, [Validators.required]],
-    id: [],
+    addressId: [],
   });
 
   constructor(
@@ -44,17 +44,17 @@ export class ContactInfoUpdateComponent implements OnInit {
           })
         )
         .subscribe((resBody: IAddress[]) => {
-          if (!contactInfo.id || !contactInfo.id.id) {
-            this.ids = resBody;
+          if (!contactInfo.addressId || !contactInfo.addressId.id) {
+            this.addressids = resBody;
           } else {
             this.addressService
-              .find(contactInfo.id.id)
+              .find(contactInfo.addressId.id)
               .pipe(
                 map((subRes: HttpResponse<IAddress>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IAddress[]) => (this.ids = concatRes));
+              .subscribe((concatRes: IAddress[]) => (this.addressids = concatRes));
           }
         });
     });
@@ -64,7 +64,7 @@ export class ContactInfoUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: contactInfo.id,
       type: contactInfo.type,
-      id: contactInfo.id,
+      addressId: contactInfo.addressId,
     });
   }
 
@@ -87,7 +87,7 @@ export class ContactInfoUpdateComponent implements OnInit {
       ...new ContactInfo(),
       id: this.editForm.get(['id'])!.value,
       type: this.editForm.get(['type'])!.value,
-      id: this.editForm.get(['id'])!.value,
+      addressId: this.editForm.get(['addressId'])!.value,
     };
   }
 

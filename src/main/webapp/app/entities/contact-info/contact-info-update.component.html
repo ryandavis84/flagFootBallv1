@@ -26,10 +26,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.contactInfo.id" for="field_id">Id</label>
-                    <select class="form-control" id="field_id" name="id" formControlName="id">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.contactInfo.addressId" for="field_addressId">Address Id</label>
+                    <select class="form-control" id="field_addressId" name="addressId" formControlName="addressId">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="addressOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : addressOption" *ngFor="let addressOption of ids; trackBy: trackById">{{ addressOption.id }}</option>
+                        <option [ngValue]="addressOption.id === editForm.get('addressId')!.value?.id ? editForm.get('addressId')!.value : addressOption" *ngFor="let addressOption of addressids; trackBy: trackById">{{ addressOption.id }}</option>
                     </select>
                 </div>
             </div>

@@ -32,7 +32,7 @@ public class ContactInfo implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Address id;
+    private Address addressId;
 
     @OneToOne(mappedBy = "emergencyId")
     @JsonIgnore
@@ -72,17 +72,17 @@ public class ContactInfo implements Serializable {
         this.type = type;
     }
 
-    public Address getId() {
-        return id;
+    public Address getAddressId() {
+        return addressId;
     }
 
-    public ContactInfo id(Address address) {
-        this.id = address;
+    public ContactInfo addressId(Address address) {
+        this.addressId = address;
         return this;
     }
 
-    public void setId(Address address) {
-        this.id = address;
+    public void setAddressId(Address address) {
+        this.addressId = address;
     }
 
     public Player getEmergencyContact() {

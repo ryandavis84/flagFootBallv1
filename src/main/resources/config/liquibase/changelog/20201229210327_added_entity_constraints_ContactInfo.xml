@@ -8,9 +8,9 @@
     -->
     <changeSet id="20201229210327-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="id_id"
+        <addForeignKeyConstraint baseColumnNames="address_id_id"
                                  baseTableName="contact_info"
-                                 constraintName="fk_contact_info_id_id"
+                                 constraintName="fk_contact_info_address_id_id"
                                  referencedColumnNames="id"
                                  referencedTableName="address"/>
 
