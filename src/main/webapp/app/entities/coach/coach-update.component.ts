@@ -4,9 +4,12 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ICoach, Coach } from 'app/shared/model/coach.model';
 import { CoachService } from './coach.service';
+import { IContactInfo } from 'app/shared/model/contact-info.model';
+import { ContactInfoService } from 'app/entities/contact-info/contact-info.service';
 
 @Component({
   selector: 'jhi-coach-update',
@@ -14,19 +17,72 @@ import { CoachService } from './coach.service';
 })
 export class CoachUpdateComponent implements OnInit {
   isSaving = false;
+  ids: IContactInfo[] = [];
+  ids: IContactInfo[] = [];
 
   editForm = this.fb.group({
     id: [],
     firstName: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
     jerseySize: [null, [Validators.required]],
+    id: [],
+    id: [],
   });
 
-  constructor(protected coachService: CoachService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected coachService: CoachService,
+    protected contactInfoService: ContactInfoService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ coach }) => {
       this.updateForm(coach);
+
+      this.contactInfoService
+        .query({ filter: 'emergencycontact-is-null' })
+        .pipe(
+          map((res: HttpResponse<IContactInfo[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IContactInfo[]) => {
+          if (!coach.id || !coach.id.id) {
+            this.ids = resBody;
+          } else {
+            this.contactInfoService
+              .find(coach.id.id)
+              .pipe(
+                map((subRes: HttpResponse<IContactInfo>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IContactInfo[]) => (this.ids = concatRes));
+          }
+        });
+
+      this.contactInfoService
+        .query({ filter: 'personalcontact-is-null' })
+        .pipe(
+          map((res: HttpResponse<IContactInfo[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IContactInfo[]) => {
+          if (!coach.id || !coach.id.id) {
+            this.ids = resBody;
+          } else {
+            this.contactInfoService
+              .find(coach.id.id)
+              .pipe(
+                map((subRes: HttpResponse<IContactInfo>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IContactInfo[]) => (this.ids = concatRes));
+          }
+        });
     });
   }
 
@@ -36,6 +92,8 @@ export class CoachUpdateComponent implements OnInit {
       firstName: coach.firstName,
       lastName: coach.lastName,
       jerseySize: coach.jerseySize,
+      id: coach.id,
+      id: coach.id,
     });
   }
 
@@ -60,6 +118,8 @@ export class CoachUpdateComponent implements OnInit {
       firstName: this.editForm.get(['firstName'])!.value,
       lastName: this.editForm.get(['lastName'])!.value,
       jerseySize: this.editForm.get(['jerseySize'])!.value,
+      id: this.editForm.get(['id'])!.value,
+      id: this.editForm.get(['id'])!.value,
     };
   }
 
@@ -77,5 +137,9 @@ export class CoachUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IContactInfo): any {
+    return item.id;
   }
 }

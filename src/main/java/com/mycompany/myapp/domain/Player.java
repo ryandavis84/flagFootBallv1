@@ -1,6 +1,6 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,8 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+
+import com.mycompany.myapp.domain.enumeration.JerseySize;
 
 /**
  * A Player.
@@ -45,18 +45,30 @@ public class Player implements Serializable {
     @Column(name = "age", nullable = false)
     private Integer age;
 
-    @OneToOne(mappedBy = "id")
-    @JsonIgnore
-    private EmergencyContact id;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "jersey_size", nullable = false)
+    private JerseySize jerseySize;
 
-    @OneToOne(mappedBy = "id")
-    @JsonIgnore
+    @OneToOne
+    @JoinColumn(unique = true)
     private ContactInfo id;
 
-    @ManyToMany(mappedBy = "ids")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnore
-    private Set<Team> ids = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private ContactInfo id;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "playerIds", allowSetters = true)
+    private Team team;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "playerIds", allowSetters = true)
+    private League league;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = "playerIds", allowSetters = true)
+    private Season season;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -132,17 +144,17 @@ public class Player implements Serializable {
         this.age = age;
     }
 
-    public EmergencyContact getId() {
-        return id;
+    public JerseySize getJerseySize() {
+        return jerseySize;
     }
 
-    public Player id(EmergencyContact emergencyContact) {
-        this.id = emergencyContact;
+    public Player jerseySize(JerseySize jerseySize) {
+        this.jerseySize = jerseySize;
         return this;
     }
 
-    public void setId(EmergencyContact emergencyContact) {
-        this.id = emergencyContact;
+    public void setJerseySize(JerseySize jerseySize) {
+        this.jerseySize = jerseySize;
     }
 
     public ContactInfo getId() {
@@ -158,29 +170,56 @@ public class Player implements Serializable {
         this.id = contactInfo;
     }
 
-    public Set<Team> getIds() {
-        return ids;
+    public ContactInfo getId() {
+        return id;
     }
 
-    public Player ids(Set<Team> teams) {
-        this.ids = teams;
+    public Player id(ContactInfo contactInfo) {
+        this.id = contactInfo;
         return this;
     }
 
-    public Player addId(Team team) {
-        this.ids.add(team);
-        team.getIds().add(this);
+    public void setId(ContactInfo contactInfo) {
+        this.id = contactInfo;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public Player team(Team team) {
+        this.team = team;
         return this;
     }
 
-    public Player removeId(Team team) {
-        this.ids.remove(team);
-        team.getIds().remove(this);
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public Player league(League league) {
+        this.league = league;
         return this;
     }
 
-    public void setIds(Set<Team> teams) {
-        this.ids = teams;
+    public void setLeague(League league) {
+        this.league = league;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public Player season(Season season) {
+        this.season = season;
+        return this;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -210,6 +249,7 @@ public class Player implements Serializable {
             ", dob='" + getDob() + "'" +
             ", grade=" + getGrade() +
             ", age=" + getAge() +
+            ", jerseySize='" + getJerseySize() + "'" +
             "}";
     }
 }

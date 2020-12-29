@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing {@link Player}.
@@ -42,34 +40,6 @@ public class PlayerServiceImpl implements PlayerService {
         return playerRepository.findAll();
     }
 
-
-
-    /**
-     *  Get all the players where Id is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true) 
-    public List<Player> findAllWhereIdIsNull() {
-        log.debug("Request to get all players where Id is null");
-        return StreamSupport
-            .stream(playerRepository.findAll().spliterator(), false)
-            .filter(player -> player.getId() == null)
-            .collect(Collectors.toList());
-    }
-
-
-    /**
-     *  Get all the players where Id is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true) 
-    public List<Player> findAllWhereIdIsNull() {
-        log.debug("Request to get all players where Id is null");
-        return StreamSupport
-            .stream(playerRepository.findAll().spliterator(), false)
-            .filter(player -> player.getId() == null)
-            .collect(Collectors.toList());
-    }
 
     @Override
     @Transactional(readOnly = true)

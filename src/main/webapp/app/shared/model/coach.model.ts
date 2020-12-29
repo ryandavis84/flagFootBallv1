@@ -1,5 +1,5 @@
+import { IContactInfo } from 'app/shared/model/contact-info.model';
 import { ITeam } from 'app/shared/model/team.model';
-import { IEmergencyContact } from 'app/shared/model/emergency-contact.model';
 import { JerseySize } from 'app/shared/model/enumerations/jersey-size.model';
 
 export interface ICoach {
@@ -7,8 +7,9 @@ export interface ICoach {
   firstName?: string;
   lastName?: string;
   jerseySize?: JerseySize;
-  ids?: ITeam[];
-  id?: IEmergencyContact;
+  id?: IContactInfo;
+  id?: IContactInfo;
+  teamIds?: ITeam[];
 }
 
 export class Coach implements ICoach {
@@ -17,7 +18,8 @@ export class Coach implements ICoach {
     public firstName?: string,
     public lastName?: string,
     public jerseySize?: JerseySize,
-    public ids?: ITeam[],
-    public id?: IEmergencyContact
+    public id?: IContactInfo,
+    public id?: IContactInfo,
+    public teamIds?: ITeam[]
   ) {}
 }

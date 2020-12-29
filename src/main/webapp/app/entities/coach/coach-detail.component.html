@@ -20,6 +20,18 @@
                 <dd>
                     <span jhiTranslate="{{ 'flagFootBallv1App.JerseySize.' + coach.jerseySize }}">{{ coach.jerseySize }}</span>
                 </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.coach.id">Id</span></dt>
+                <dd>
+                    <div *ngIf="coach.id">
+                        <a [routerLink]="['/contact-info', coach.id?.id, 'view']">{{ coach.id?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.coach.id">Id</span></dt>
+                <dd>
+                    <div *ngIf="coach.id">
+                        <a [routerLink]="['/contact-info', coach.id?.id, 'view']">{{ coach.id?.id }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

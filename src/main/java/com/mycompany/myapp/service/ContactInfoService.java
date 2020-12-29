@@ -25,11 +25,29 @@ public interface ContactInfoService {
      */
     List<ContactInfo> findAll();
     /**
-     * Get all the ContactInfoDTO where Id is {@code null}.
+     * Get all the ContactInfoDTO where EmergencyContact is {@code null}.
      *
      * @return the {@link List} of entities.
      */
-    List<ContactInfo> findAllWhereIdIsNull();
+    List<ContactInfo> findAllWhereEmergencyContactIsNull();
+    /**
+     * Get all the ContactInfoDTO where EmergencyContact is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<ContactInfo> findAllWhereEmergencyContactIsNull();
+    /**
+     * Get all the ContactInfoDTO where PersonalContact is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<ContactInfo> findAllWherePersonalContactIsNull();
+    /**
+     * Get all the ContactInfoDTO where PersonalContact is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<ContactInfo> findAllWherePersonalContactIsNull();
 
 
     /**

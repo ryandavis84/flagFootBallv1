@@ -28,18 +28,16 @@
       "fieldValidateRules": [
         "required"
       ]
-    }
-  ],
-  "relationships": [
+    },
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "contactInfo",
-      "otherEntityRelationshipName": "id",
-      "relationshipName": "id",
-      "otherEntityField": "id",
-      "ownerSide": true
+      "fieldName": "phoneNumber",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
     }
   ],
+  "relationships": [],
   "changelogDate": "20201229210227",
   "entityTableName": "address",
   "dto": "no",

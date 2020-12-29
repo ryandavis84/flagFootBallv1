@@ -60,11 +60,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.address.id" for="field_id">Id</label>
-                    <select class="form-control" id="field_id" name="id" formControlName="id">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="contactInfoOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : contactInfoOption" *ngFor="let contactInfoOption of ids; trackBy: trackById">{{ contactInfoOption.id }}</option>
-                    </select>
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.address.phoneNumber" for="field_phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                           formControlName="phoneNumber"/>
+                    <div *ngIf="editForm.get('phoneNumber')!.invalid && (editForm.get('phoneNumber')!.dirty || editForm.get('phoneNumber')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('phoneNumber')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
             </div>
 

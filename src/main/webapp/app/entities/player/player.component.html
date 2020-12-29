@@ -28,6 +28,12 @@
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.dob">Dob</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.grade">Grade</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.age">Age</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.jerseySize">Jersey Size</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.id">Id</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.id">Id</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.team">Team</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.league">League</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.season">Season</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -39,6 +45,32 @@
                     <td>{{ player.dob }}</td>
                     <td>{{ player.grade }}</td>
                     <td>{{ player.age }}</td>
+                    <td jhiTranslate="{{ 'flagFootBallv1App.JerseySize.' + player.jerseySize }}">{{ player.jerseySize }}</td>
+                    <td>
+                        <div *ngIf="player.id">
+                            <a [routerLink]="['/contact-info', player.id?.id, 'view']" >{{ player.id?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="player.id">
+                            <a [routerLink]="['/contact-info', player.id?.id, 'view']" >{{ player.id?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="player.team">
+                            <a [routerLink]="['/team', player.team?.id, 'view']" >{{ player.team?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="player.league">
+                            <a [routerLink]="['/league', player.league?.id, 'view']" >{{ player.league?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="player.season">
+                            <a [routerLink]="['/season', player.season?.id, 'view']" >{{ player.season?.id }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

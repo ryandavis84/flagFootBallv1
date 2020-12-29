@@ -24,11 +24,9 @@
                 <dd>
                     <span>{{ address.state }}</span>
                 </dd>
-                <dt><span jhiTranslate="flagFootBallv1App.address.id">Id</span></dt>
+                <dt><span jhiTranslate="flagFootBallv1App.address.phoneNumber">Phone Number</span></dt>
                 <dd>
-                    <div *ngIf="address.id">
-                        <a [routerLink]="['/contact-info', address.id?.id, 'view']">{{ address.id?.id }}</a>
-                    </div>
+                    <span>{{ address.phoneNumber }}</span>
                 </dd>
             </dl>
 

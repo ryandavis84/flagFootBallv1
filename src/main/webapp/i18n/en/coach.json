@@ -20,7 +20,8 @@
       "lastName": "Last Name",
       "jerseySize": "Jersey Size",
       "id": "Id",
-      "id": "Id"
+      "id": "Id",
+      "teamId": "Team Id"
     }
   }
 }

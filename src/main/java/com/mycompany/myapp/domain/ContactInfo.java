@@ -5,8 +5,11 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
+
+import com.mycompany.myapp.domain.enumeration.ContactType;
 
 /**
  * A ContactInfo.
@@ -22,13 +25,30 @@ public class ContactInfo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private ContactType type;
+
     @OneToOne
     @JoinColumn(unique = true)
-    private Player id;
+    private Address id;
 
     @OneToOne(mappedBy = "id")
     @JsonIgnore
-    private Address id;
+    private Player emergencyContact;
+
+    @OneToOne(mappedBy = "id")
+    @JsonIgnore
+    private Coach emergencyContact;
+
+    @OneToOne(mappedBy = "id")
+    @JsonIgnore
+    private Player personalContact;
+
+    @OneToOne(mappedBy = "id")
+    @JsonIgnore
+    private Coach personalContact;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -39,17 +59,17 @@ public class ContactInfo implements Serializable {
         this.id = id;
     }
 
-    public Player getId() {
-        return id;
+    public ContactType getType() {
+        return type;
     }
 
-    public ContactInfo id(Player player) {
-        this.id = player;
+    public ContactInfo type(ContactType type) {
+        this.type = type;
         return this;
     }
 
-    public void setId(Player player) {
-        this.id = player;
+    public void setType(ContactType type) {
+        this.type = type;
     }
 
     public Address getId() {
@@ -63,6 +83,58 @@ public class ContactInfo implements Serializable {
 
     public void setId(Address address) {
         this.id = address;
+    }
+
+    public Player getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public ContactInfo emergencyContact(Player player) {
+        this.emergencyContact = player;
+        return this;
+    }
+
+    public void setEmergencyContact(Player player) {
+        this.emergencyContact = player;
+    }
+
+    public Coach getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public ContactInfo emergencyContact(Coach coach) {
+        this.emergencyContact = coach;
+        return this;
+    }
+
+    public void setEmergencyContact(Coach coach) {
+        this.emergencyContact = coach;
+    }
+
+    public Player getPersonalContact() {
+        return personalContact;
+    }
+
+    public ContactInfo personalContact(Player player) {
+        this.personalContact = player;
+        return this;
+    }
+
+    public void setPersonalContact(Player player) {
+        this.personalContact = player;
+    }
+
+    public Coach getPersonalContact() {
+        return personalContact;
+    }
+
+    public ContactInfo personalContact(Coach coach) {
+        this.personalContact = coach;
+        return this;
+    }
+
+    public void setPersonalContact(Coach coach) {
+        this.personalContact = coach;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -87,6 +159,7 @@ public class ContactInfo implements Serializable {
     public String toString() {
         return "ContactInfo{" +
             "id=" + getId() +
+            ", type='" + getType() + "'" +
             "}";
     }
 }

@@ -1,0 +1,9 @@
+{
+  "flagFootBallv1App": {
+    "ContactType": {
+      "null": "",
+      "EMERGENCY": "EMERGENCY",
+      "PERSONAL": "PERSONAL"
+    }
+  }
+}

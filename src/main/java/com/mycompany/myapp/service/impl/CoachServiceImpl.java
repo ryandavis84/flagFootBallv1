@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * Service Implementation for managing {@link Coach}.
@@ -42,20 +40,6 @@ public class CoachServiceImpl implements CoachService {
         return coachRepository.findAll();
     }
 
-
-
-    /**
-     *  Get all the coaches where Id is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true) 
-    public List<Coach> findAllWhereIdIsNull() {
-        log.debug("Request to get all coaches where Id is null");
-        return StreamSupport
-            .stream(coachRepository.findAll().spliterator(), false)
-            .filter(coach -> coach.getId() == null)
-            .collect(Collectors.toList());
-    }
 
     @Override
     @Transactional(readOnly = true)

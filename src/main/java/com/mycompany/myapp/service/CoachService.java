@@ -24,12 +24,6 @@ public interface CoachService {
      * @return the list of entities.
      */
     List<Coach> findAll();
-    /**
-     * Get all the CoachDTO where Id is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<Coach> findAllWhereIdIsNull();
 
 
     /**

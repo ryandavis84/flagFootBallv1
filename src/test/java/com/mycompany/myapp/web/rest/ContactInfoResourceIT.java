@@ -22,6 +22,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.mycompany.myapp.domain.enumeration.ContactType;
 /**
  * Integration tests for the {@link ContactInfoResource} REST controller.
  */
@@ -29,6 +30,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @WithMockUser
 public class ContactInfoResourceIT {
+
+    private static final ContactType DEFAULT_TYPE = ContactType.EMERGENCY;
+    private static final ContactType UPDATED_TYPE = ContactType.PERSONAL;
 
     @Autowired
     private ContactInfoRepository contactInfoRepository;
@@ -51,7 +55,8 @@ public class ContactInfoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static ContactInfo createEntity(EntityManager em) {
-        ContactInfo contactInfo = new ContactInfo();
+        ContactInfo contactInfo = new ContactInfo()
+            .type(DEFAULT_TYPE);
         return contactInfo;
     }
     /**
@@ -61,7 +66,8 @@ public class ContactInfoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static ContactInfo createUpdatedEntity(EntityManager em) {
-        ContactInfo contactInfo = new ContactInfo();
+        ContactInfo contactInfo = new ContactInfo()
+            .type(UPDATED_TYPE);
         return contactInfo;
     }
 
@@ -84,6 +90,7 @@ public class ContactInfoResourceIT {
         List<ContactInfo> contactInfoList = contactInfoRepository.findAll();
         assertThat(contactInfoList).hasSize(databaseSizeBeforeCreate + 1);
         ContactInfo testContactInfo = contactInfoList.get(contactInfoList.size() - 1);
+        assertThat(testContactInfo.getType()).isEqualTo(DEFAULT_TYPE);
     }
 
     @Test
@@ -108,6 +115,25 @@ public class ContactInfoResourceIT {
 
     @Test
     @Transactional
+    public void checkTypeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = contactInfoRepository.findAll().size();
+        // set the field null
+        contactInfo.setType(null);
+
+        // Create the ContactInfo, which fails.
+
+
+        restContactInfoMockMvc.perform(post("/api/contact-infos")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(contactInfo)))
+            .andExpect(status().isBadRequest());
+
+        List<ContactInfo> contactInfoList = contactInfoRepository.findAll();
+        assertThat(contactInfoList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllContactInfos() throws Exception {
         // Initialize the database
         contactInfoRepository.saveAndFlush(contactInfo);
@@ -116,7 +142,8 @@ public class ContactInfoResourceIT {
         restContactInfoMockMvc.perform(get("/api/contact-infos?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(contactInfo.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(contactInfo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())));
     }
     
     @Test
@@ -129,7 +156,8 @@ public class ContactInfoResourceIT {
         restContactInfoMockMvc.perform(get("/api/contact-infos/{id}", contactInfo.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(contactInfo.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(contactInfo.getId().intValue()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()));
     }
     @Test
     @Transactional
@@ -151,6 +179,8 @@ public class ContactInfoResourceIT {
         ContactInfo updatedContactInfo = contactInfoRepository.findById(contactInfo.getId()).get();
         // Disconnect from session so that the updates on updatedContactInfo are not directly saved in db
         em.detach(updatedContactInfo);
+        updatedContactInfo
+            .type(UPDATED_TYPE);
 
         restContactInfoMockMvc.perform(put("/api/contact-infos")
             .contentType(MediaType.APPLICATION_JSON)
@@ -161,6 +191,7 @@ public class ContactInfoResourceIT {
         List<ContactInfo> contactInfoList = contactInfoRepository.findAll();
         assertThat(contactInfoList).hasSize(databaseSizeBeforeUpdate);
         ContactInfo testContactInfo = contactInfoList.get(contactInfoList.size() - 1);
+        assertThat(testContactInfo.getType()).isEqualTo(UPDATED_TYPE);
     }
 
     @Test

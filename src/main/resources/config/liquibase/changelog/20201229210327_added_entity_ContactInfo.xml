@@ -16,6 +16,9 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
             <column name="id_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_contact_info_id_id" />
             </column>
@@ -42,6 +45,7 @@
                   separator=";"
                   tableName="contact_info">
             <column name="id" type="numeric"/>
+            <column name="type" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

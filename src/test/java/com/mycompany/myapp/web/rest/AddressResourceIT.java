@@ -42,6 +42,9 @@ public class AddressResourceIT {
     private static final String DEFAULT_STATE = "AAAAAAAAAA";
     private static final String UPDATED_STATE = "BBBBBBBBBB";
 
+    private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
+
     @Autowired
     private AddressRepository addressRepository;
 
@@ -67,7 +70,8 @@ public class AddressResourceIT {
             .street1(DEFAULT_STREET_1)
             .street2(DEFAULT_STREET_2)
             .city(DEFAULT_CITY)
-            .state(DEFAULT_STATE);
+            .state(DEFAULT_STATE)
+            .phoneNumber(DEFAULT_PHONE_NUMBER);
         return address;
     }
     /**
@@ -81,7 +85,8 @@ public class AddressResourceIT {
             .street1(UPDATED_STREET_1)
             .street2(UPDATED_STREET_2)
             .city(UPDATED_CITY)
-            .state(UPDATED_STATE);
+            .state(UPDATED_STATE)
+            .phoneNumber(UPDATED_PHONE_NUMBER);
         return address;
     }
 
@@ -108,6 +113,7 @@ public class AddressResourceIT {
         assertThat(testAddress.getStreet2()).isEqualTo(DEFAULT_STREET_2);
         assertThat(testAddress.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testAddress.getState()).isEqualTo(DEFAULT_STATE);
+        assertThat(testAddress.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
     }
 
     @Test
@@ -208,6 +214,25 @@ public class AddressResourceIT {
 
     @Test
     @Transactional
+    public void checkPhoneNumberIsRequired() throws Exception {
+        int databaseSizeBeforeTest = addressRepository.findAll().size();
+        // set the field null
+        address.setPhoneNumber(null);
+
+        // Create the Address, which fails.
+
+
+        restAddressMockMvc.perform(post("/api/addresses")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .andExpect(status().isBadRequest());
+
+        List<Address> addressList = addressRepository.findAll();
+        assertThat(addressList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllAddresses() throws Exception {
         // Initialize the database
         addressRepository.saveAndFlush(address);
@@ -220,7 +245,8 @@ public class AddressResourceIT {
             .andExpect(jsonPath("$.[*].street1").value(hasItem(DEFAULT_STREET_1)))
             .andExpect(jsonPath("$.[*].street2").value(hasItem(DEFAULT_STREET_2)))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
-            .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE)));
+            .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE)))
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)));
     }
     
     @Test
@@ -237,7 +263,8 @@ public class AddressResourceIT {
             .andExpect(jsonPath("$.street1").value(DEFAULT_STREET_1))
             .andExpect(jsonPath("$.street2").value(DEFAULT_STREET_2))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY))
-            .andExpect(jsonPath("$.state").value(DEFAULT_STATE));
+            .andExpect(jsonPath("$.state").value(DEFAULT_STATE))
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER));
     }
     @Test
     @Transactional
@@ -263,7 +290,8 @@ public class AddressResourceIT {
             .street1(UPDATED_STREET_1)
             .street2(UPDATED_STREET_2)
             .city(UPDATED_CITY)
-            .state(UPDATED_STATE);
+            .state(UPDATED_STATE)
+            .phoneNumber(UPDATED_PHONE_NUMBER);
 
         restAddressMockMvc.perform(put("/api/addresses")
             .contentType(MediaType.APPLICATION_JSON)
@@ -278,6 +306,7 @@ public class AddressResourceIT {
         assertThat(testAddress.getStreet2()).isEqualTo(UPDATED_STREET_2);
         assertThat(testAddress.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testAddress.getState()).isEqualTo(UPDATED_STATE);
+        assertThat(testAddress.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
     }
 
     @Test
