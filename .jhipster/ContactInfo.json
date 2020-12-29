@@ -15,7 +15,7 @@
       "relationshipType": "one-to-one",
       "otherEntityName": "address",
       "otherEntityRelationshipName": "contactInfo",
-      "relationshipName": "id",
+      "relationshipName": "addressId",
       "otherEntityField": "id",
       "ownerSide": true
     },

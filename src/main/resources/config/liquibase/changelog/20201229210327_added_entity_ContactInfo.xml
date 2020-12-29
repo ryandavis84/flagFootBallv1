@@ -19,8 +19,8 @@
             <column name="type" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="id_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_contact_info_id_id" />
+            <column name="address_id_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_contact_info_address_id_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>

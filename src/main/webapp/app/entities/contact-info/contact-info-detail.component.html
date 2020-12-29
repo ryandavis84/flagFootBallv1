@@ -12,10 +12,10 @@
                 <dd>
                     <span jhiTranslate="{{ 'flagFootBallv1App.ContactType.' + contactInfo.type }}">{{ contactInfo.type }}</span>
                 </dd>
-                <dt><span jhiTranslate="flagFootBallv1App.contactInfo.id">Id</span></dt>
+                <dt><span jhiTranslate="flagFootBallv1App.contactInfo.addressId">Address Id</span></dt>
                 <dd>
-                    <div *ngIf="contactInfo.id">
-                        <a [routerLink]="['/address', contactInfo.id?.id, 'view']">{{ contactInfo.id?.id }}</a>
+                    <div *ngIf="contactInfo.addressId">
+                        <a [routerLink]="['/address', contactInfo.addressId?.id, 'view']">{{ contactInfo.addressId?.id }}</a>
                     </div>
                 </dd>
             </dl>
