@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -33,22 +32,6 @@ public class ContactInfo implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Address addressId;
-
-    @OneToOne(mappedBy = "emergencyId")
-    @JsonIgnore
-    private Player emergencyContact;
-
-    @OneToOne(mappedBy = "emergencyId")
-    @JsonIgnore
-    private Coach emergencyContact;
-
-    @OneToOne(mappedBy = "personalId")
-    @JsonIgnore
-    private Player personalContact;
-
-    @OneToOne(mappedBy = "personalId")
-    @JsonIgnore
-    private Coach personalContact;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -83,58 +66,6 @@ public class ContactInfo implements Serializable {
 
     public void setAddressId(Address address) {
         this.addressId = address;
-    }
-
-    public Player getEmergencyContact() {
-        return emergencyContact;
-    }
-
-    public ContactInfo emergencyContact(Player player) {
-        this.emergencyContact = player;
-        return this;
-    }
-
-    public void setEmergencyContact(Player player) {
-        this.emergencyContact = player;
-    }
-
-    public Coach getEmergencyContact() {
-        return emergencyContact;
-    }
-
-    public ContactInfo emergencyContact(Coach coach) {
-        this.emergencyContact = coach;
-        return this;
-    }
-
-    public void setEmergencyContact(Coach coach) {
-        this.emergencyContact = coach;
-    }
-
-    public Player getPersonalContact() {
-        return personalContact;
-    }
-
-    public ContactInfo personalContact(Player player) {
-        this.personalContact = player;
-        return this;
-    }
-
-    public void setPersonalContact(Player player) {
-        this.personalContact = player;
-    }
-
-    public Coach getPersonalContact() {
-        return personalContact;
-    }
-
-    public ContactInfo personalContact(Coach coach) {
-        this.personalContact = coach;
-        return this;
-    }
-
-    public void setPersonalContact(Coach coach) {
-        this.personalContact = coach;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

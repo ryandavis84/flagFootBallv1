@@ -28,7 +28,7 @@
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "contactInfo",
-      "otherEntityRelationshipName": "emergencyContact",
+      "otherEntityRelationshipName": "coach",
       "relationshipName": "emergencyId",
       "otherEntityField": "id",
       "ownerSide": true
@@ -36,7 +36,7 @@
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "contactInfo",
-      "otherEntityRelationshipName": "personalContact",
+      "otherEntityRelationshipName": "coach",
       "relationshipName": "personalId",
       "otherEntityField": "id",
       "ownerSide": true

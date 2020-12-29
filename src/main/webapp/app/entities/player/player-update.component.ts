@@ -61,7 +61,7 @@ export class PlayerUpdateComponent implements OnInit {
       this.updateForm(player);
 
       this.contactInfoService
-        .query({ filter: 'emergencycontact-is-null' })
+        .query({ filter: 'player-is-null' })
         .pipe(
           map((res: HttpResponse<IContactInfo[]>) => {
             return res.body || [];
@@ -83,7 +83,7 @@ export class PlayerUpdateComponent implements OnInit {
         });
 
       this.contactInfoService
-        .query({ filter: 'personalcontact-is-null' })
+        .query({ filter: 'player-is-null' })
         .pipe(
           map((res: HttpResponse<IContactInfo[]>) => {
             return res.body || [];

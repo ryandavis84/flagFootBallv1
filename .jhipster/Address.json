@@ -37,15 +37,7 @@
       ]
     }
   ],
-  "relationships": [
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "contactInfo",
-      "otherEntityRelationshipName": "addressId",
-      "relationshipName": "contactInfo",
-      "ownerSide": false
-    }
-  ],
+  "relationships": [],
   "changelogDate": "20201229210227",
   "entityTableName": "address",
   "dto": "no",

@@ -17,11 +17,7 @@
         "title": "Contact Info"
       },
       "type": "Type",
-      "addressId": "Address Id",
-      "emergencyContact": "Emergency Contact",
-      "emergencyContact": "Emergency Contact",
-      "personalContact": "Personal Contact",
-      "personalContact": "Personal Contact"
+      "addressId": "Address Id"
     }
   }
 }
