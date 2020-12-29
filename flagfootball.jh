@@ -27,7 +27,7 @@ relationship OneToOne {
     Coach{emergencyId} to ContactInfo{emergencyContact}
     Player{personalId} to ContactInfo{personalContact}
     Coach{personalId} to ContactInfo{personalContact}
-  	ContactInfo{id} to Address
+  	ContactInfo{addressId} to Address{contactInfo}
 }
 
 entity Player {
