@@ -1,14 +1,51 @@
 
 entity Season {
-	name String
+	name String required
 }
 
 entity League {
 	name String required
 }
 
+relationship OneToMany {
+	Season{league} to League
+}
+
 entity Team {
 	name String required
+}
+
+
+relationship OneToMany {
+	Team{player} to Player
+}
+
+relationship OneToMany {
+	League{team} to Team
+}
+
+relationship OneToMany {
+	Team{player} to Player
+}
+
+relationship OneToMany {
+	Team{coach} to Coach
+}
+
+relationship OneToOne {
+	EmergencyContact{player} to Player
+}
+
+relationship OneToOne {
+	EmergencyContact{coach} to Coach
+}
+
+relationship OneToOne {
+	ContactInfo{player} to Player
+}
+
+relationship OneToOne {
+	Address{contactInfo} to ContactInfo
 }
 
 entity Player {
@@ -17,7 +54,11 @@ entity Player {
     dob String required
     grade Integer required
     age Integer required
-    jerseySize JerseySize required
+}
+
+entity EmergencyContact {
+	firstName String required
+    lastName String required
 }
 
 entity Address {
@@ -28,58 +69,17 @@ entity Address {
 }
 
 entity ContactInfo {
-
+	
 }
 
 entity Coach {
 	firstName String required
     lastName String required
-    jerseySize JerseySize
+    jerseySize JerseySize required
 }
 
 enum JerseySize {
     YS, YM, YL, S, M, L, XL, XXL, XXXL
-}
-
-relationship OneToMany {
-	Team{player} to Player
-}
-relationship OneToMany {
-	League{team} to Team
-}
-relationship OneToMany {
-    Season{league} to League
-}
-
-relationship OneToOne {
-	ContactInfo{address} to Address
-}
-
-relationship OneToOne {
-    Season{league} to League
-}
-
-relationship OneToOne {
-    Coach{team} to Team
-}
-
-relationship OneToOne {
-    Coach{contactInfo} to ContactInfo
-}
-
-relationship OneToOne {
-    Player{contactInfo} to ContactInfo
-}
-relationship OneToOne {
-	Player{team} to Team
-}
-relationship OneToOne {
-	Player{team} to Team
-    Player{contactInfo} to ContactInfo
-    Coach{contactInfo} to ContactInfo
-    Coach{team} to Team
-    Season{league} to League
-    ContactInfo{address} to Address
 }
 
 service all with serviceImpl 
