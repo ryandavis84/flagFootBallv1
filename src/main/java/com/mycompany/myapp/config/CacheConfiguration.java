@@ -57,6 +57,8 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.Address.class.getName());
             createCache(cm, com.mycompany.myapp.domain.ContactInfo.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Coach.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Team.class.getName() + ".coaches");
+            createCache(cm, com.mycompany.myapp.domain.EmergencyContact.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

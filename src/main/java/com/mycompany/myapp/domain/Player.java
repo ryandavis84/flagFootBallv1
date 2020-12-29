@@ -9,8 +9,6 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 
-import com.mycompany.myapp.domain.enumeration.JerseySize;
-
 /**
  * A Player.
  */
@@ -44,19 +42,6 @@ public class Player implements Serializable {
     @NotNull
     @Column(name = "age", nullable = false)
     private Integer age;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "jersey_size", nullable = false)
-    private JerseySize jerseySize;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private ContactInfo contactInfo;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Team team;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "players", allowSetters = true)
@@ -136,45 +121,6 @@ public class Player implements Serializable {
         this.age = age;
     }
 
-    public JerseySize getJerseySize() {
-        return jerseySize;
-    }
-
-    public Player jerseySize(JerseySize jerseySize) {
-        this.jerseySize = jerseySize;
-        return this;
-    }
-
-    public void setJerseySize(JerseySize jerseySize) {
-        this.jerseySize = jerseySize;
-    }
-
-    public ContactInfo getContactInfo() {
-        return contactInfo;
-    }
-
-    public Player contactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
-        return this;
-    }
-
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public Player team(Team team) {
-        this.team = team;
-        return this;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
     public Team getTeam() {
         return team;
     }
@@ -215,7 +161,6 @@ public class Player implements Serializable {
             ", dob='" + getDob() + "'" +
             ", grade=" + getGrade() +
             ", age=" + getAge() +
-            ", jerseySize='" + getJerseySize() + "'" +
             "}";
     }
 }

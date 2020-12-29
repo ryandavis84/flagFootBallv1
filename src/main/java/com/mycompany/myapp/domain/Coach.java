@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -32,17 +33,14 @@ public class Coach implements Serializable {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "jersey_size")
+    @Column(name = "jersey_size", nullable = false)
     private JerseySize jerseySize;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties(value = "coaches", allowSetters = true)
     private Team team;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private ContactInfo contactInfo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -103,19 +101,6 @@ public class Coach implements Serializable {
 
     public void setTeam(Team team) {
         this.team = team;
-    }
-
-    public ContactInfo getContactInfo() {
-        return contactInfo;
-    }
-
-    public Coach contactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
-        return this;
-    }
-
-    public void setContactInfo(ContactInfo contactInfo) {
-        this.contactInfo = contactInfo;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

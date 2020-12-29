@@ -4,9 +4,12 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { IAddress, Address } from 'app/shared/model/address.model';
 import { AddressService } from './address.service';
+import { IContactInfo } from 'app/shared/model/contact-info.model';
+import { ContactInfoService } from 'app/entities/contact-info/contact-info.service';
 
 @Component({
   selector: 'jhi-address-update',
@@ -14,6 +17,7 @@ import { AddressService } from './address.service';
 })
 export class AddressUpdateComponent implements OnInit {
   isSaving = false;
+  contactinfos: IContactInfo[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -21,13 +25,41 @@ export class AddressUpdateComponent implements OnInit {
     street2: [null, [Validators.required]],
     city: [null, [Validators.required]],
     state: [null, [Validators.required]],
+    contactInfo: [],
   });
 
-  constructor(protected addressService: AddressService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected addressService: AddressService,
+    protected contactInfoService: ContactInfoService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ address }) => {
       this.updateForm(address);
+
+      this.contactInfoService
+        .query({ filter: 'address-is-null' })
+        .pipe(
+          map((res: HttpResponse<IContactInfo[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IContactInfo[]) => {
+          if (!address.contactInfo || !address.contactInfo.id) {
+            this.contactinfos = resBody;
+          } else {
+            this.contactInfoService
+              .find(address.contactInfo.id)
+              .pipe(
+                map((subRes: HttpResponse<IContactInfo>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IContactInfo[]) => (this.contactinfos = concatRes));
+          }
+        });
     });
   }
 
@@ -38,6 +70,7 @@ export class AddressUpdateComponent implements OnInit {
       street2: address.street2,
       city: address.city,
       state: address.state,
+      contactInfo: address.contactInfo,
     });
   }
 
@@ -63,6 +96,7 @@ export class AddressUpdateComponent implements OnInit {
       street2: this.editForm.get(['street2'])!.value,
       city: this.editForm.get(['city'])!.value,
       state: this.editForm.get(['state'])!.value,
+      contactInfo: this.editForm.get(['contactInfo'])!.value,
     };
   }
 
@@ -80,5 +114,9 @@ export class AddressUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IContactInfo): any {
+    return item.id;
   }
 }

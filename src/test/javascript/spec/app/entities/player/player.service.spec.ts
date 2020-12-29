@@ -2,7 +2,6 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { PlayerService } from 'app/entities/player/player.service';
 import { IPlayer, Player } from 'app/shared/model/player.model';
-import { JerseySize } from 'app/shared/model/enumerations/jersey-size.model';
 
 describe('Service Tests', () => {
   describe('Player Service', () => {
@@ -21,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(PlayerService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Player(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0, JerseySize.YS);
+      elemDefault = new Player(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 0, 0);
     });
 
     describe('Service methods', () => {
@@ -60,7 +59,6 @@ describe('Service Tests', () => {
             dob: 'BBBBBB',
             grade: 1,
             age: 1,
-            jerseySize: 'BBBBBB',
           },
           elemDefault
         );
@@ -82,7 +80,6 @@ describe('Service Tests', () => {
             dob: 'BBBBBB',
             grade: 1,
             age: 1,
-            jerseySize: 'BBBBBB',
           },
           elemDefault
         );

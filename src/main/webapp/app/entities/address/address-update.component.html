@@ -58,6 +58,14 @@
                         </small>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.address.contactInfo" for="field_contactInfo">Contact Info</label>
+                    <select class="form-control" id="field_contactInfo" name="contactInfo" formControlName="contactInfo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contactInfoOption.id === editForm.get('contactInfo')!.value?.id ? editForm.get('contactInfo')!.value : contactInfoOption" *ngFor="let contactInfoOption of contactinfos; trackBy: trackById">{{ contactInfoOption.id }}</option>
+                    </select>
+                </div>
             </div>
 
             <div>

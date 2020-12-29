@@ -4,16 +4,11 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { ICoach, Coach } from 'app/shared/model/coach.model';
 import { CoachService } from './coach.service';
 import { ITeam } from 'app/shared/model/team.model';
 import { TeamService } from 'app/entities/team/team.service';
-import { IContactInfo } from 'app/shared/model/contact-info.model';
-import { ContactInfoService } from 'app/entities/contact-info/contact-info.service';
-
-type SelectableEntity = ITeam | IContactInfo;
 
 @Component({
   selector: 'jhi-coach-update',
@@ -22,21 +17,18 @@ type SelectableEntity = ITeam | IContactInfo;
 export class CoachUpdateComponent implements OnInit {
   isSaving = false;
   teams: ITeam[] = [];
-  contactinfos: IContactInfo[] = [];
 
   editForm = this.fb.group({
     id: [],
     firstName: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
-    jerseySize: [],
+    jerseySize: [null, [Validators.required]],
     team: [],
-    contactInfo: [],
   });
 
   constructor(
     protected coachService: CoachService,
     protected teamService: TeamService,
-    protected contactInfoService: ContactInfoService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -45,49 +37,7 @@ export class CoachUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ coach }) => {
       this.updateForm(coach);
 
-      this.teamService
-        .query({ filter: 'coach-is-null' })
-        .pipe(
-          map((res: HttpResponse<ITeam[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: ITeam[]) => {
-          if (!coach.team || !coach.team.id) {
-            this.teams = resBody;
-          } else {
-            this.teamService
-              .find(coach.team.id)
-              .pipe(
-                map((subRes: HttpResponse<ITeam>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: ITeam[]) => (this.teams = concatRes));
-          }
-        });
-
-      this.contactInfoService
-        .query({ filter: 'coach-is-null' })
-        .pipe(
-          map((res: HttpResponse<IContactInfo[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IContactInfo[]) => {
-          if (!coach.contactInfo || !coach.contactInfo.id) {
-            this.contactinfos = resBody;
-          } else {
-            this.contactInfoService
-              .find(coach.contactInfo.id)
-              .pipe(
-                map((subRes: HttpResponse<IContactInfo>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IContactInfo[]) => (this.contactinfos = concatRes));
-          }
-        });
+      this.teamService.query().subscribe((res: HttpResponse<ITeam[]>) => (this.teams = res.body || []));
     });
   }
 
@@ -98,7 +48,6 @@ export class CoachUpdateComponent implements OnInit {
       lastName: coach.lastName,
       jerseySize: coach.jerseySize,
       team: coach.team,
-      contactInfo: coach.contactInfo,
     });
   }
 
@@ -124,7 +73,6 @@ export class CoachUpdateComponent implements OnInit {
       lastName: this.editForm.get(['lastName'])!.value,
       jerseySize: this.editForm.get(['jerseySize'])!.value,
       team: this.editForm.get(['team'])!.value,
-      contactInfo: this.editForm.get(['contactInfo'])!.value,
     };
   }
 
@@ -144,7 +92,7 @@ export class CoachUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
+  trackById(index: number, item: ITeam): any {
     return item.id;
   }
 }

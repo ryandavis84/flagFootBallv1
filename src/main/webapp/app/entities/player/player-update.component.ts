@@ -4,16 +4,11 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { IPlayer, Player } from 'app/shared/model/player.model';
 import { PlayerService } from './player.service';
-import { IContactInfo } from 'app/shared/model/contact-info.model';
-import { ContactInfoService } from 'app/entities/contact-info/contact-info.service';
 import { ITeam } from 'app/shared/model/team.model';
 import { TeamService } from 'app/entities/team/team.service';
-
-type SelectableEntity = IContactInfo | ITeam;
 
 @Component({
   selector: 'jhi-player-update',
@@ -21,8 +16,6 @@ type SelectableEntity = IContactInfo | ITeam;
 })
 export class PlayerUpdateComponent implements OnInit {
   isSaving = false;
-  contactinfos: IContactInfo[] = [];
-  teams: ITeam[] = [];
   teams: ITeam[] = [];
 
   editForm = this.fb.group({
@@ -32,15 +25,11 @@ export class PlayerUpdateComponent implements OnInit {
     dob: [null, [Validators.required]],
     grade: [null, [Validators.required]],
     age: [null, [Validators.required]],
-    jerseySize: [null, [Validators.required]],
-    contactInfo: [],
-    team: [],
     team: [],
   });
 
   constructor(
     protected playerService: PlayerService,
-    protected contactInfoService: ContactInfoService,
     protected teamService: TeamService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -49,50 +38,6 @@ export class PlayerUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ player }) => {
       this.updateForm(player);
-
-      this.contactInfoService
-        .query({ filter: 'player-is-null' })
-        .pipe(
-          map((res: HttpResponse<IContactInfo[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IContactInfo[]) => {
-          if (!player.contactInfo || !player.contactInfo.id) {
-            this.contactinfos = resBody;
-          } else {
-            this.contactInfoService
-              .find(player.contactInfo.id)
-              .pipe(
-                map((subRes: HttpResponse<IContactInfo>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IContactInfo[]) => (this.contactinfos = concatRes));
-          }
-        });
-
-      this.teamService
-        .query({ filter: 'player-is-null' })
-        .pipe(
-          map((res: HttpResponse<ITeam[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: ITeam[]) => {
-          if (!player.team || !player.team.id) {
-            this.teams = resBody;
-          } else {
-            this.teamService
-              .find(player.team.id)
-              .pipe(
-                map((subRes: HttpResponse<ITeam>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: ITeam[]) => (this.teams = concatRes));
-          }
-        });
 
       this.teamService.query().subscribe((res: HttpResponse<ITeam[]>) => (this.teams = res.body || []));
     });
@@ -106,9 +51,6 @@ export class PlayerUpdateComponent implements OnInit {
       dob: player.dob,
       grade: player.grade,
       age: player.age,
-      jerseySize: player.jerseySize,
-      contactInfo: player.contactInfo,
-      team: player.team,
       team: player.team,
     });
   }
@@ -136,9 +78,6 @@ export class PlayerUpdateComponent implements OnInit {
       dob: this.editForm.get(['dob'])!.value,
       grade: this.editForm.get(['grade'])!.value,
       age: this.editForm.get(['age'])!.value,
-      jerseySize: this.editForm.get(['jerseySize'])!.value,
-      contactInfo: this.editForm.get(['contactInfo'])!.value,
-      team: this.editForm.get(['team'])!.value,
       team: this.editForm.get(['team'])!.value,
     };
   }
@@ -159,7 +98,7 @@ export class PlayerUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
+  trackById(index: number, item: ITeam): any {
     return item.id;
   }
 }

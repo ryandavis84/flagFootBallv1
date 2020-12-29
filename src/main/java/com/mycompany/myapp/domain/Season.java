@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -23,12 +24,9 @@ public class Season implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Column(name = "name", nullable = false)
     private String name;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private League league;
 
     @OneToMany(mappedBy = "season")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -54,19 +52,6 @@ public class Season implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public League getLeague() {
-        return league;
-    }
-
-    public Season league(League league) {
-        this.league = league;
-        return this;
-    }
-
-    public void setLeague(League league) {
-        this.league = league;
     }
 
     public Set<League> getLeagues() {

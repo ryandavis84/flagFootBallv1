@@ -38,6 +38,10 @@ public class Address implements Serializable {
     @Column(name = "state", nullable = false)
     private String state;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private ContactInfo contactInfo;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -97,6 +101,19 @@ public class Address implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public ContactInfo getContactInfo() {
+        return contactInfo;
+    }
+
+    public Address contactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
+        return this;
+    }
+
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

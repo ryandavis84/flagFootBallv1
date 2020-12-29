@@ -19,7 +19,8 @@
       "street1": "Street 1",
       "street2": "Street 2",
       "city": "City",
-      "state": "State"
+      "state": "State",
+      "contactInfo": "Contact Info"
     }
   }
 }

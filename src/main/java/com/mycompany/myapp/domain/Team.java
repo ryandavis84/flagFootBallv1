@@ -33,6 +33,10 @@ public class Team implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Player> players = new HashSet<>();
 
+    @OneToMany(mappedBy = "team")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Coach> coaches = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties(value = "teams", allowSetters = true)
     private League league;
@@ -82,6 +86,31 @@ public class Team implements Serializable {
 
     public void setPlayers(Set<Player> players) {
         this.players = players;
+    }
+
+    public Set<Coach> getCoaches() {
+        return coaches;
+    }
+
+    public Team coaches(Set<Coach> coaches) {
+        this.coaches = coaches;
+        return this;
+    }
+
+    public Team addCoach(Coach coach) {
+        this.coaches.add(coach);
+        coach.setTeam(this);
+        return this;
+    }
+
+    public Team removeCoach(Coach coach) {
+        this.coaches.remove(coach);
+        coach.setTeam(null);
+        return this;
+    }
+
+    public void setCoaches(Set<Coach> coaches) {
+        this.coaches = coaches;
     }
 
     public League getLeague() {

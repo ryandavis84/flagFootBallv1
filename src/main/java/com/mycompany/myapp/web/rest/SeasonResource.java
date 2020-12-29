@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -45,7 +46,7 @@ public class SeasonResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/seasons")
-    public ResponseEntity<Season> createSeason(@RequestBody Season season) throws URISyntaxException {
+    public ResponseEntity<Season> createSeason(@Valid @RequestBody Season season) throws URISyntaxException {
         log.debug("REST request to save Season : {}", season);
         if (season.getId() != null) {
             throw new BadRequestAlertException("A new season cannot already have an ID", ENTITY_NAME, "idexists");
@@ -66,7 +67,7 @@ public class SeasonResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/seasons")
-    public ResponseEntity<Season> updateSeason(@RequestBody Season season) throws URISyntaxException {
+    public ResponseEntity<Season> updateSeason(@Valid @RequestBody Season season) throws URISyntaxException {
         log.debug("REST request to update Season : {}", season);
         if (season.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

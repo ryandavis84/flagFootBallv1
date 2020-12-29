@@ -12,10 +12,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.contactInfo.address" for="field_address">Address</label>
-                    <select class="form-control" id="field_address" name="address" formControlName="address">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.contactInfo.player" for="field_player">Player</label>
+                    <select class="form-control" id="field_player" name="player" formControlName="player">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="addressOption.id === editForm.get('address')!.value?.id ? editForm.get('address')!.value : addressOption" *ngFor="let addressOption of addresses; trackBy: trackById">{{ addressOption.id }}</option>
+                        <option [ngValue]="playerOption.id === editForm.get('player')!.value?.id ? editForm.get('player')!.value : playerOption" *ngFor="let playerOption of players; trackBy: trackById">{{ playerOption.id }}</option>
                     </select>
                 </div>
             </div>

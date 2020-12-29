@@ -17,6 +17,12 @@
       "relationshipName": "player"
     },
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "coach",
+      "otherEntityRelationshipName": "team",
+      "relationshipName": "coach"
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "league",
       "otherEntityRelationshipName": "team",

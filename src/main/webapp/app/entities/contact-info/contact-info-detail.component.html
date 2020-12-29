@@ -8,10 +8,10 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="flagFootBallv1App.contactInfo.address">Address</span></dt>
+                <dt><span jhiTranslate="flagFootBallv1App.contactInfo.player">Player</span></dt>
                 <dd>
-                    <div *ngIf="contactInfo.address">
-                        <a [routerLink]="['/address', contactInfo.address?.id, 'view']">{{ contactInfo.address?.id }}</a>
+                    <div *ngIf="contactInfo.player">
+                        <a [routerLink]="['/player', contactInfo.player?.id, 'view']">{{ contactInfo.player?.id }}</a>
                     </div>
                 </dd>
             </dl>
