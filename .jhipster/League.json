@@ -1,0 +1,38 @@
+{
+  "name": "League",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "league",
+      "relationshipName": "team"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "season",
+      "otherEntityRelationshipName": "league",
+      "relationshipName": "season",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201229205927",
+  "entityTableName": "league",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
