@@ -14,23 +14,7 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229205827_added_entity_Season.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229205927_added_entity_League.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210027_added_entity_Team.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210127_added_entity_Player.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210227_added_entity_Address.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210327_added_entity_ContactInfo.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210427_added_entity_Coach.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229212625_added_entity_EmergencyContact.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20201229205827_added_entity_constraints_Season.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229205927_added_entity_constraints_League.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210027_added_entity_constraints_Team.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210127_added_entity_constraints_Player.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210327_added_entity_constraints_ContactInfo.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210427_added_entity_constraints_Coach.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229212625_added_entity_constraints_EmergencyContact.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20201229210227_added_entity_constraints_Address.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
