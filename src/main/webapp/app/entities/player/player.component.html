@@ -29,8 +29,8 @@
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.grade">Grade</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.age">Age</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.jerseySize">Jersey Size</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.team">Team</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.contactInfo">Contact Info</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.team">Team</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.player.team">Team</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -45,13 +45,13 @@
                     <td>{{ player.age }}</td>
                     <td jhiTranslate="{{ 'flagFootBallv1App.JerseySize.' + player.jerseySize }}">{{ player.jerseySize }}</td>
                     <td>
-                        <div *ngIf="player.team">
-                            <a [routerLink]="['/team', player.team?.id, 'view']" >{{ player.team?.id }}</a>
+                        <div *ngIf="player.contactInfo">
+                            <a [routerLink]="['/contact-info', player.contactInfo?.id, 'view']" >{{ player.contactInfo?.id }}</a>
                         </div>
                     </td>
                     <td>
-                        <div *ngIf="player.contactInfo">
-                            <a [routerLink]="['/contact-info', player.contactInfo?.id, 'view']" >{{ player.contactInfo?.id }}</a>
+                        <div *ngIf="player.team">
+                            <a [routerLink]="['/team', player.team?.id, 'view']" >{{ player.team?.id }}</a>
                         </div>
                     </td>
                     <td>

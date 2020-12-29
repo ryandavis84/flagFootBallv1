@@ -25,11 +25,11 @@
             <column name="jersey_size" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="contact_info_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_coach_contact_info_id" />
-            </column>
             <column name="team_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_coach_team_id" />
+            </column>
+            <column name="contact_info_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_coach_contact_info_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>

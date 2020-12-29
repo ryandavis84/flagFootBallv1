@@ -43,10 +43,36 @@ enum JerseySize {
 
 relationship OneToMany {
 	Team{player} to Player
-    League{team} to Team
+}
+relationship OneToMany {
+	League{team} to Team
+}
+relationship OneToMany {
     Season{league} to League
 }
 
+relationship OneToOne {
+	ContactInfo{address} to Address
+}
+
+relationship OneToOne {
+    Season{league} to League
+}
+
+relationship OneToOne {
+    Coach{team} to Team
+}
+
+relationship OneToOne {
+    Coach{contactInfo} to ContactInfo
+}
+
+relationship OneToOne {
+    Player{contactInfo} to ContactInfo
+}
+relationship OneToOne {
+	Player{team} to Team
+}
 relationship OneToOne {
 	Player{team} to Team
     Player{contactInfo} to ContactInfo

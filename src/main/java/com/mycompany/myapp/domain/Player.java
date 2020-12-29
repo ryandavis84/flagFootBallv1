@@ -52,11 +52,11 @@ public class Player implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Team team;
+    private ContactInfo contactInfo;
 
     @OneToOne
     @JoinColumn(unique = true)
-    private ContactInfo contactInfo;
+    private Team team;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "players", allowSetters = true)
@@ -149,19 +149,6 @@ public class Player implements Serializable {
         this.jerseySize = jerseySize;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public Player team(Team team) {
-        this.team = team;
-        return this;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
     public ContactInfo getContactInfo() {
         return contactInfo;
     }
@@ -173,6 +160,19 @@ public class Player implements Serializable {
 
     public void setContactInfo(ContactInfo contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public Player team(Team team) {
+        this.team = team;
+        return this;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public Team getTeam() {

@@ -8,12 +8,12 @@ import { map } from 'rxjs/operators';
 
 import { ICoach, Coach } from 'app/shared/model/coach.model';
 import { CoachService } from './coach.service';
-import { IContactInfo } from 'app/shared/model/contact-info.model';
-import { ContactInfoService } from 'app/entities/contact-info/contact-info.service';
 import { ITeam } from 'app/shared/model/team.model';
 import { TeamService } from 'app/entities/team/team.service';
+import { IContactInfo } from 'app/shared/model/contact-info.model';
+import { ContactInfoService } from 'app/entities/contact-info/contact-info.service';
 
-type SelectableEntity = IContactInfo | ITeam;
+type SelectableEntity = ITeam | IContactInfo;
 
 @Component({
   selector: 'jhi-coach-update',
@@ -21,22 +21,22 @@ type SelectableEntity = IContactInfo | ITeam;
 })
 export class CoachUpdateComponent implements OnInit {
   isSaving = false;
-  contactinfos: IContactInfo[] = [];
   teams: ITeam[] = [];
+  contactinfos: IContactInfo[] = [];
 
   editForm = this.fb.group({
     id: [],
     firstName: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
     jerseySize: [],
-    contactInfo: [],
     team: [],
+    contactInfo: [],
   });
 
   constructor(
     protected coachService: CoachService,
-    protected contactInfoService: ContactInfoService,
     protected teamService: TeamService,
+    protected contactInfoService: ContactInfoService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -44,28 +44,6 @@ export class CoachUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ coach }) => {
       this.updateForm(coach);
-
-      this.contactInfoService
-        .query({ filter: 'coach-is-null' })
-        .pipe(
-          map((res: HttpResponse<IContactInfo[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IContactInfo[]) => {
-          if (!coach.contactInfo || !coach.contactInfo.id) {
-            this.contactinfos = resBody;
-          } else {
-            this.contactInfoService
-              .find(coach.contactInfo.id)
-              .pipe(
-                map((subRes: HttpResponse<IContactInfo>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IContactInfo[]) => (this.contactinfos = concatRes));
-          }
-        });
 
       this.teamService
         .query({ filter: 'coach-is-null' })
@@ -88,6 +66,28 @@ export class CoachUpdateComponent implements OnInit {
               .subscribe((concatRes: ITeam[]) => (this.teams = concatRes));
           }
         });
+
+      this.contactInfoService
+        .query({ filter: 'coach-is-null' })
+        .pipe(
+          map((res: HttpResponse<IContactInfo[]>) => {
+            return res.body || [];
+          })
+        )
+        .subscribe((resBody: IContactInfo[]) => {
+          if (!coach.contactInfo || !coach.contactInfo.id) {
+            this.contactinfos = resBody;
+          } else {
+            this.contactInfoService
+              .find(coach.contactInfo.id)
+              .pipe(
+                map((subRes: HttpResponse<IContactInfo>) => {
+                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
+                })
+              )
+              .subscribe((concatRes: IContactInfo[]) => (this.contactinfos = concatRes));
+          }
+        });
     });
   }
 
@@ -97,8 +97,8 @@ export class CoachUpdateComponent implements OnInit {
       firstName: coach.firstName,
       lastName: coach.lastName,
       jerseySize: coach.jerseySize,
-      contactInfo: coach.contactInfo,
       team: coach.team,
+      contactInfo: coach.contactInfo,
     });
   }
 
@@ -123,8 +123,8 @@ export class CoachUpdateComponent implements OnInit {
       firstName: this.editForm.get(['firstName'])!.value,
       lastName: this.editForm.get(['lastName'])!.value,
       jerseySize: this.editForm.get(['jerseySize'])!.value,
-      contactInfo: this.editForm.get(['contactInfo'])!.value,
       team: this.editForm.get(['team'])!.value,
+      contactInfo: this.editForm.get(['contactInfo'])!.value,
     };
   }
 
