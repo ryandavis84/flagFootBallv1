@@ -18,6 +18,7 @@
       },
       "name": "Name",
       "player": "Player",
+      "coach": "Coach",
       "league": "League"
     }
   }

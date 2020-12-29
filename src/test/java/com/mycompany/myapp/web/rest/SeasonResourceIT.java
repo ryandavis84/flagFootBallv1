@@ -114,6 +114,25 @@ public class SeasonResourceIT {
 
     @Test
     @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = seasonRepository.findAll().size();
+        // set the field null
+        season.setName(null);
+
+        // Create the Season, which fails.
+
+
+        restSeasonMockMvc.perform(post("/api/seasons")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(season)))
+            .andExpect(status().isBadRequest());
+
+        List<Season> seasonList = seasonRepository.findAll();
+        assertThat(seasonList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllSeasons() throws Exception {
         // Initialize the database
         seasonRepository.saveAndFlush(season);

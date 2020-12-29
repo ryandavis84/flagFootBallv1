@@ -8,8 +8,8 @@ import { map } from 'rxjs/operators';
 
 import { IContactInfo, ContactInfo } from 'app/shared/model/contact-info.model';
 import { ContactInfoService } from './contact-info.service';
-import { IAddress } from 'app/shared/model/address.model';
-import { AddressService } from 'app/entities/address/address.service';
+import { IPlayer } from 'app/shared/model/player.model';
+import { PlayerService } from 'app/entities/player/player.service';
 
 @Component({
   selector: 'jhi-contact-info-update',
@@ -17,16 +17,16 @@ import { AddressService } from 'app/entities/address/address.service';
 })
 export class ContactInfoUpdateComponent implements OnInit {
   isSaving = false;
-  addresses: IAddress[] = [];
+  players: IPlayer[] = [];
 
   editForm = this.fb.group({
     id: [],
-    address: [],
+    player: [],
   });
 
   constructor(
     protected contactInfoService: ContactInfoService,
-    protected addressService: AddressService,
+    protected playerService: PlayerService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -35,25 +35,25 @@ export class ContactInfoUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ contactInfo }) => {
       this.updateForm(contactInfo);
 
-      this.addressService
+      this.playerService
         .query({ filter: 'contactinfo-is-null' })
         .pipe(
-          map((res: HttpResponse<IAddress[]>) => {
+          map((res: HttpResponse<IPlayer[]>) => {
             return res.body || [];
           })
         )
-        .subscribe((resBody: IAddress[]) => {
-          if (!contactInfo.address || !contactInfo.address.id) {
-            this.addresses = resBody;
+        .subscribe((resBody: IPlayer[]) => {
+          if (!contactInfo.player || !contactInfo.player.id) {
+            this.players = resBody;
           } else {
-            this.addressService
-              .find(contactInfo.address.id)
+            this.playerService
+              .find(contactInfo.player.id)
               .pipe(
-                map((subRes: HttpResponse<IAddress>) => {
+                map((subRes: HttpResponse<IPlayer>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IAddress[]) => (this.addresses = concatRes));
+              .subscribe((concatRes: IPlayer[]) => (this.players = concatRes));
           }
         });
     });
@@ -62,7 +62,7 @@ export class ContactInfoUpdateComponent implements OnInit {
   updateForm(contactInfo: IContactInfo): void {
     this.editForm.patchValue({
       id: contactInfo.id,
-      address: contactInfo.address,
+      player: contactInfo.player,
     });
   }
 
@@ -84,7 +84,7 @@ export class ContactInfoUpdateComponent implements OnInit {
     return {
       ...new ContactInfo(),
       id: this.editForm.get(['id'])!.value,
-      address: this.editForm.get(['address'])!.value,
+      player: this.editForm.get(['player'])!.value,
     };
   }
 
@@ -104,7 +104,7 @@ export class ContactInfoUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: IAddress): any {
+  trackById(index: number, item: IPlayer): any {
     return item.id;
   }
 }

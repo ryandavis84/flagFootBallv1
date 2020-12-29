@@ -32,6 +32,10 @@ import { RouterModule } from '@angular/router';
         path: 'coach',
         loadChildren: () => import('./coach/coach.module').then(m => m.FlagFootBallv1CoachModule),
       },
+      {
+        path: 'emergency-contact',
+        loadChildren: () => import('./emergency-contact/emergency-contact.module').then(m => m.FlagFootBallv1EmergencyContactModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

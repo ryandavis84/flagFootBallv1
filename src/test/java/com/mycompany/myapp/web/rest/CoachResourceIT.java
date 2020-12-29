@@ -165,6 +165,25 @@ public class CoachResourceIT {
 
     @Test
     @Transactional
+    public void checkJerseySizeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = coachRepository.findAll().size();
+        // set the field null
+        coach.setJerseySize(null);
+
+        // Create the Coach, which fails.
+
+
+        restCoachMockMvc.perform(post("/api/coaches")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(coach)))
+            .andExpect(status().isBadRequest());
+
+        List<Coach> coachList = coachRepository.findAll();
+        assertThat(coachList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllCoaches() throws Exception {
         // Initialize the database
         coachRepository.saveAndFlush(coach);

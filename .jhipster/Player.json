@@ -35,33 +35,9 @@
       "fieldValidateRules": [
         "required"
       ]
-    },
-    {
-      "fieldName": "jerseySize",
-      "fieldType": "JerseySize",
-      "fieldValues": "YS,YM,YL,S,M,L,XL,XXL,XXXL",
-      "fieldValidateRules": [
-        "required"
-      ]
     }
   ],
   "relationships": [
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "contactInfo",
-      "otherEntityRelationshipName": "player",
-      "relationshipName": "contactInfo",
-      "otherEntityField": "id",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "team",
-      "otherEntityRelationshipName": "player",
-      "relationshipName": "team",
-      "otherEntityField": "id",
-      "ownerSide": true
-    },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "team",

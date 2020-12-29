@@ -80,43 +80,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.jerseySize" for="field_jerseySize">Jersey Size</label>
-                    <select class="form-control" name="jerseySize" formControlName="jerseySize" id="field_jerseySize">
-                        <option value="YS">{{ 'flagFootBallv1App.JerseySize.YS' | translate }}</option>
-                        <option value="YM">{{ 'flagFootBallv1App.JerseySize.YM' | translate }}</option>
-                        <option value="YL">{{ 'flagFootBallv1App.JerseySize.YL' | translate }}</option>
-                        <option value="S">{{ 'flagFootBallv1App.JerseySize.S' | translate }}</option>
-                        <option value="M">{{ 'flagFootBallv1App.JerseySize.M' | translate }}</option>
-                        <option value="L">{{ 'flagFootBallv1App.JerseySize.L' | translate }}</option>
-                        <option value="XL">{{ 'flagFootBallv1App.JerseySize.XL' | translate }}</option>
-                        <option value="XXL">{{ 'flagFootBallv1App.JerseySize.XXL' | translate }}</option>
-                        <option value="XXXL">{{ 'flagFootBallv1App.JerseySize.XXXL' | translate }}</option>
-                    </select>
-                    <div *ngIf="editForm.get('jerseySize')!.invalid && (editForm.get('jerseySize')!.dirty || editForm.get('jerseySize')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('jerseySize')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.contactInfo" for="field_contactInfo">Contact Info</label>
-                    <select class="form-control" id="field_contactInfo" name="contactInfo" formControlName="contactInfo">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="contactInfoOption.id === editForm.get('contactInfo')!.value?.id ? editForm.get('contactInfo')!.value : contactInfoOption" *ngFor="let contactInfoOption of contactinfos; trackBy: trackById">{{ contactInfoOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.team" for="field_team">Team</label>
-                    <select class="form-control" id="field_team" name="team" formControlName="team">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="teamOption.id === editForm.get('team')!.value?.id ? editForm.get('team')!.value : teamOption" *ngFor="let teamOption of teams; trackBy: trackById">{{ teamOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="flagFootBallv1App.player.team" for="field_team">Team</label>
                     <select class="form-control" id="field_team" name="team" formControlName="team">
                         <option [ngValue]="null"></option>

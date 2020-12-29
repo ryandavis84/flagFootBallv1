@@ -3,18 +3,13 @@
   "fields": [
     {
       "fieldName": "name",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
     }
   ],
   "relationships": [
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "league",
-      "otherEntityRelationshipName": "season",
-      "relationshipName": "league",
-      "otherEntityField": "id",
-      "ownerSide": true
-    },
     {
       "relationshipType": "one-to-many",
       "otherEntityName": "league",

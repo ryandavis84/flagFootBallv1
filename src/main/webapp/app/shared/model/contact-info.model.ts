@@ -1,10 +1,10 @@
-import { IAddress } from 'app/shared/model/address.model';
+import { IPlayer } from 'app/shared/model/player.model';
 
 export interface IContactInfo {
   id?: number;
-  address?: IAddress;
+  player?: IPlayer;
 }
 
 export class ContactInfo implements IContactInfo {
-  constructor(public id?: number, public address?: IAddress) {}
+  constructor(public id?: number, public player?: IPlayer) {}
 }

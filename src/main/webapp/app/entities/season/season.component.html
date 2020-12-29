@@ -24,7 +24,6 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.season.name">Name</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.season.league">League</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -32,11 +31,6 @@
                 <tr *ngFor="let season of seasons ;trackBy: trackId">
                     <td><a [routerLink]="['/season', season.id, 'view']">{{ season.id }}</a></td>
                     <td>{{ season.name }}</td>
-                    <td>
-                        <div *ngIf="season.league">
-                            <a [routerLink]="['/league', season.league?.id, 'view']" >{{ season.league?.id }}</a>
-                        </div>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

@@ -12,12 +12,6 @@
                 <dd>
                     <span>{{ season.name }}</span>
                 </dd>
-                <dt><span jhiTranslate="flagFootBallv1App.season.league">League</span></dt>
-                <dd>
-                    <div *ngIf="season.league">
-                        <a [routerLink]="['/league', season.league?.id, 'view']">{{ season.league?.id }}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

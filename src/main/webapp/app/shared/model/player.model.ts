@@ -1,6 +1,4 @@
-import { IContactInfo } from 'app/shared/model/contact-info.model';
 import { ITeam } from 'app/shared/model/team.model';
-import { JerseySize } from 'app/shared/model/enumerations/jersey-size.model';
 
 export interface IPlayer {
   id?: number;
@@ -9,9 +7,6 @@ export interface IPlayer {
   dob?: string;
   grade?: number;
   age?: number;
-  jerseySize?: JerseySize;
-  contactInfo?: IContactInfo;
-  team?: ITeam;
   team?: ITeam;
 }
 
@@ -23,9 +18,6 @@ export class Player implements IPlayer {
     public dob?: string,
     public grade?: number,
     public age?: number,
-    public jerseySize?: JerseySize,
-    public contactInfo?: IContactInfo,
-    public team?: ITeam,
     public team?: ITeam
   ) {}
 }

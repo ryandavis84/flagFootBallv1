@@ -23,7 +23,7 @@ public class ContactInfo implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private Address address;
+    private Player player;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -34,17 +34,17 @@ public class ContactInfo implements Serializable {
         this.id = id;
     }
 
-    public Address getAddress() {
-        return address;
+    public Player getPlayer() {
+        return player;
     }
 
-    public ContactInfo address(Address address) {
-        this.address = address;
+    public ContactInfo player(Player player) {
+        this.player = player;
         return this;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

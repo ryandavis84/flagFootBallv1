@@ -14,6 +14,7 @@
         "address": "Address",
         "contactInfo": "Contact Info",
         "coach": "Coach",
+        "emergencyContact": "Emergency Contact",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
