@@ -7,44 +7,26 @@ entity League {
 	name String required
 }
 
-relationship OneToMany {
-	Season{league} to League{season}
-}
-
 entity Team {
 	name String required
 }
 
-relationship OneToMany {
-	Team{player} to Player{team}
+relationship ManyToMany {
+	Team{player} to Player{id}
+    League{team} to Team{id}
+    League{season} to Season{id}
 }
 
 relationship OneToMany {
-	League{team} to Team{league}
-}
-
-relationship OneToMany {
-	Team{player} to Player{team}
-}
-
-relationship OneToMany {
-	Team{coach} to Coach{team}
+	Coach{team} to Team{coach}
 }
 
 relationship OneToOne {
 	EmergencyContact{player} to Player{emergencyContact}
-}
-
-relationship OneToOne {
-	EmergencyContact{coach} to Coach{emergencyContact}
-}
-
-relationship OneToOne {
-	ContactInfo{player} to Player{contactInfo}
-}
-
-relationship OneToOne {
-	Address{contactInfo} to ContactInfo{address}
+    EmergencyContact{coach} to Coach{emergencyContact}
+    ContactInfo{player} to Player{contactInfo}
+    ContactInfo{player} to Player{contactInfo}
+    Address{contactInfo} to ContactInfo{address}
 }
 
 entity Player {

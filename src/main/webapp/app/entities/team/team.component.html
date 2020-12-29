@@ -24,7 +24,8 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.name">Name</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.league">League</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.player">Player</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.team.coach">Coach</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,8 +34,13 @@
                     <td><a [routerLink]="['/team', team.id, 'view']">{{ team.id }}</a></td>
                     <td>{{ team.name }}</td>
                     <td>
-                        <div *ngIf="team.league">
-                            <a [routerLink]="['/league', team.league?.id, 'view']" >{{ team.league?.id }}</a>
+                        <span *ngFor="let player of team.players; let last = last">
+                            <a class="form-control-static" [routerLink]="['/player', player?.id, 'view']">{{ player.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div *ngIf="team.coach">
+                            <a [routerLink]="['/coach', team.coach?.id, 'view']" >{{ team.coach?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">

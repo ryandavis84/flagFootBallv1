@@ -8,11 +8,29 @@
     -->
     <changeSet id="20201229205927-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="league_id"
+                                 baseTableName="league_team"
+                                 constraintName="fk_league_team_league_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="league"/>
+
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="league_team"
+                                 constraintName="fk_league_team_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+        
+        <addForeignKeyConstraint baseColumnNames="league_id"
+                                 baseTableName="league_season"
+                                 constraintName="fk_league_season_league_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="league"/>
+
         <addForeignKeyConstraint baseColumnNames="season_id"
-                                 baseTableName="league"
-                                 constraintName="fk_league_season_id"
+                                 baseTableName="league_season"
+                                 constraintName="fk_league_season_season_id"
                                  referencedColumnNames="id"
                                  referencedTableName="season"/>
-
+        
     </changeSet>
 </databaseChangeLog>

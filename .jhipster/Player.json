@@ -53,11 +53,12 @@
       "ownerSide": false
     },
     {
-      "relationshipType": "many-to-one",
+      "relationshipType": "many-to-many",
       "otherEntityName": "team",
       "otherEntityRelationshipName": "player",
-      "relationshipName": "team",
-      "otherEntityField": "id"
+      "relationshipName": "id",
+      "otherEntityField": "id",
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201229210127",

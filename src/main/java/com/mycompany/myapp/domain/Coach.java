@@ -1,7 +1,6 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.mycompany.myapp.domain.enumeration.JerseySize;
 
@@ -39,13 +40,13 @@ public class Coach implements Serializable {
     @Column(name = "jersey_size", nullable = false)
     private JerseySize jerseySize;
 
+    @OneToMany(mappedBy = "coach")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Team> teams = new HashSet<>();
+
     @OneToOne(mappedBy = "coach")
     @JsonIgnore
     private EmergencyContact emergencyContact;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = "coaches", allowSetters = true)
-    private Team team;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -95,6 +96,31 @@ public class Coach implements Serializable {
         this.jerseySize = jerseySize;
     }
 
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public Coach teams(Set<Team> teams) {
+        this.teams = teams;
+        return this;
+    }
+
+    public Coach addTeam(Team team) {
+        this.teams.add(team);
+        team.setCoach(this);
+        return this;
+    }
+
+    public Coach removeTeam(Team team) {
+        this.teams.remove(team);
+        team.setCoach(null);
+        return this;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
+    }
+
     public EmergencyContact getEmergencyContact() {
         return emergencyContact;
     }
@@ -106,19 +132,6 @@ public class Coach implements Serializable {
 
     public void setEmergencyContact(EmergencyContact emergencyContact) {
         this.emergencyContact = emergencyContact;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public Coach team(Team team) {
-        this.team = team;
-        return this;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

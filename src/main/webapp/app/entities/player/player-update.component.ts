@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 
 import { IPlayer, Player } from 'app/shared/model/player.model';
 import { PlayerService } from './player.service';
-import { ITeam } from 'app/shared/model/team.model';
-import { TeamService } from 'app/entities/team/team.service';
 
 @Component({
   selector: 'jhi-player-update',
@@ -16,7 +14,6 @@ import { TeamService } from 'app/entities/team/team.service';
 })
 export class PlayerUpdateComponent implements OnInit {
   isSaving = false;
-  teams: ITeam[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -25,21 +22,13 @@ export class PlayerUpdateComponent implements OnInit {
     dob: [null, [Validators.required]],
     grade: [null, [Validators.required]],
     age: [null, [Validators.required]],
-    team: [],
   });
 
-  constructor(
-    protected playerService: PlayerService,
-    protected teamService: TeamService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected playerService: PlayerService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ player }) => {
       this.updateForm(player);
-
-      this.teamService.query().subscribe((res: HttpResponse<ITeam[]>) => (this.teams = res.body || []));
     });
   }
 
@@ -51,7 +40,6 @@ export class PlayerUpdateComponent implements OnInit {
       dob: player.dob,
       grade: player.grade,
       age: player.age,
-      team: player.team,
     });
   }
 
@@ -78,7 +66,6 @@ export class PlayerUpdateComponent implements OnInit {
       dob: this.editForm.get(['dob'])!.value,
       grade: this.editForm.get(['grade'])!.value,
       age: this.editForm.get(['age'])!.value,
-      team: this.editForm.get(['team'])!.value,
     };
   }
 
@@ -96,9 +83,5 @@ export class PlayerUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: ITeam): any {
-    return item.id;
   }
 }

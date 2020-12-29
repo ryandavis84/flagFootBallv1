@@ -2,6 +2,9 @@ package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.League;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +27,13 @@ public interface LeagueService {
      * @return the list of entities.
      */
     List<League> findAll();
+
+    /**
+     * Get all the leagues with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    Page<League> findAllWithEagerRelationships(Pageable pageable);
 
 
     /**

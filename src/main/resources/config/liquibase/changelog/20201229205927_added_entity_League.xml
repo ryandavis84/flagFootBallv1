@@ -19,15 +19,34 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="season_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
 
     <changeSet id="20201229205927-1-relations" author="jhipster">
 
+        <createTable tableName="league_team">
+            <column name="team_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="league_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="league_id, team_id" tableName="league_team"/>
+        
+        <createTable tableName="league_season">
+            <column name="season_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="league_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="league_id, season_id" tableName="league_season"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 

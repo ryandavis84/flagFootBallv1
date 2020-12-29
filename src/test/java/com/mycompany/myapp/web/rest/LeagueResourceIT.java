@@ -7,18 +7,25 @@ import com.mycompany.myapp.service.LeagueService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -26,6 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Integration tests for the {@link LeagueResource} REST controller.
  */
 @SpringBootTest(classes = FlagFootBallv1App.class)
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 public class LeagueResourceIT {
@@ -35,6 +43,12 @@ public class LeagueResourceIT {
 
     @Autowired
     private LeagueRepository leagueRepository;
+
+    @Mock
+    private LeagueRepository leagueRepositoryMock;
+
+    @Mock
+    private LeagueService leagueServiceMock;
 
     @Autowired
     private LeagueService leagueService;
@@ -145,6 +159,26 @@ public class LeagueResourceIT {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllLeaguesWithEagerRelationshipsIsEnabled() throws Exception {
+        when(leagueServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restLeagueMockMvc.perform(get("/api/leagues?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(leagueServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllLeaguesWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(leagueServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restLeagueMockMvc.perform(get("/api/leagues?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(leagueServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getLeague() throws Exception {

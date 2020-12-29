@@ -11,10 +11,12 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-many",
       "otherEntityName": "league",
       "otherEntityRelationshipName": "season",
-      "relationshipName": "league"
+      "relationshipName": "id",
+      "otherEntityField": "id",
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201229205827",

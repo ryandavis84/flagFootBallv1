@@ -23,7 +23,7 @@
       "age": "Age",
       "emergencyContact": "Emergency Contact",
       "contactInfo": "Contact Info",
-      "team": "Team"
+      "id": "Id"
     }
   }
 }
