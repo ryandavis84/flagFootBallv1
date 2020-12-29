@@ -1,7 +1,6 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Player.
@@ -52,9 +53,10 @@ public class Player implements Serializable {
     @JsonIgnore
     private ContactInfo contactInfo;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "players", allowSetters = true)
-    private Team team;
+    @ManyToMany(mappedBy = "players")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnore
+    private Set<Team> ids = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -156,17 +158,29 @@ public class Player implements Serializable {
         this.contactInfo = contactInfo;
     }
 
-    public Team getTeam() {
-        return team;
+    public Set<Team> getIds() {
+        return ids;
     }
 
-    public Player team(Team team) {
-        this.team = team;
+    public Player ids(Set<Team> teams) {
+        this.ids = teams;
         return this;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public Player addId(Team team) {
+        this.ids.add(team);
+        team.getPlayers().add(this);
+        return this;
+    }
+
+    public Player removeId(Team team) {
+        this.ids.remove(team);
+        team.getPlayers().remove(this);
+        return this;
+    }
+
+    public void setIds(Set<Team> teams) {
+        this.ids = teams;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

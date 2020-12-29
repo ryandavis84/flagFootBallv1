@@ -2,6 +2,9 @@ package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Team;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +27,13 @@ public interface TeamService {
      * @return the list of entities.
      */
     List<Team> findAll();
+
+    /**
+     * Get all the teams with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    Page<Team> findAllWithEagerRelationships(Pageable pageable);
 
 
     /**

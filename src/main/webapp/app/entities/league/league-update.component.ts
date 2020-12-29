@@ -7,8 +7,12 @@ import { Observable } from 'rxjs';
 
 import { ILeague, League } from 'app/shared/model/league.model';
 import { LeagueService } from './league.service';
+import { ITeam } from 'app/shared/model/team.model';
+import { TeamService } from 'app/entities/team/team.service';
 import { ISeason } from 'app/shared/model/season.model';
 import { SeasonService } from 'app/entities/season/season.service';
+
+type SelectableEntity = ITeam | ISeason;
 
 @Component({
   selector: 'jhi-league-update',
@@ -16,16 +20,19 @@ import { SeasonService } from 'app/entities/season/season.service';
 })
 export class LeagueUpdateComponent implements OnInit {
   isSaving = false;
+  teams: ITeam[] = [];
   seasons: ISeason[] = [];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    season: [],
+    teams: [],
+    seasons: [],
   });
 
   constructor(
     protected leagueService: LeagueService,
+    protected teamService: TeamService,
     protected seasonService: SeasonService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -35,6 +42,8 @@ export class LeagueUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ league }) => {
       this.updateForm(league);
 
+      this.teamService.query().subscribe((res: HttpResponse<ITeam[]>) => (this.teams = res.body || []));
+
       this.seasonService.query().subscribe((res: HttpResponse<ISeason[]>) => (this.seasons = res.body || []));
     });
   }
@@ -43,7 +52,8 @@ export class LeagueUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: league.id,
       name: league.name,
-      season: league.season,
+      teams: league.teams,
+      seasons: league.seasons,
     });
   }
 
@@ -66,7 +76,8 @@ export class LeagueUpdateComponent implements OnInit {
       ...new League(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      season: this.editForm.get(['season'])!.value,
+      teams: this.editForm.get(['teams'])!.value,
+      seasons: this.editForm.get(['seasons'])!.value,
     };
   }
 
@@ -86,7 +97,18 @@ export class LeagueUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: ISeason): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: SelectableEntity[], option: SelectableEntity): SelectableEntity {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

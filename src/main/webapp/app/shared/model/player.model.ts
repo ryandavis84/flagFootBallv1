@@ -11,7 +11,7 @@ export interface IPlayer {
   age?: number;
   emergencyContact?: IEmergencyContact;
   contactInfo?: IContactInfo;
-  team?: ITeam;
+  ids?: ITeam[];
 }
 
 export class Player implements IPlayer {
@@ -24,6 +24,6 @@ export class Player implements IPlayer {
     public age?: number,
     public emergencyContact?: IEmergencyContact,
     public contactInfo?: IContactInfo,
-    public team?: ITeam
+    public ids?: ITeam[]
   ) {}
 }

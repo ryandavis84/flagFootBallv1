@@ -12,10 +12,16 @@
                 <dd>
                     <span>{{ team.name }}</span>
                 </dd>
-                <dt><span jhiTranslate="flagFootBallv1App.team.league">League</span></dt>
+                <dt><span jhiTranslate="flagFootBallv1App.team.player">Player</span></dt>
                 <dd>
-                    <div *ngIf="team.league">
-                        <a [routerLink]="['/league', team.league?.id, 'view']">{{ team.league?.id }}</a>
+                    <span *ngFor="let player of team.players; let last = last">
+                        <a [routerLink]="['/player', player?.id, 'view']">{{ player.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="flagFootBallv1App.team.coach">Coach</span></dt>
+                <dd>
+                    <div *ngIf="team.coach">
+                        <a [routerLink]="['/coach', team.coach?.id, 'view']">{{ team.coach?.id }}</a>
                     </div>
                 </dd>
             </dl>

@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 
 import { ICoach, Coach } from 'app/shared/model/coach.model';
 import { CoachService } from './coach.service';
-import { ITeam } from 'app/shared/model/team.model';
-import { TeamService } from 'app/entities/team/team.service';
 
 @Component({
   selector: 'jhi-coach-update',
@@ -16,28 +14,19 @@ import { TeamService } from 'app/entities/team/team.service';
 })
 export class CoachUpdateComponent implements OnInit {
   isSaving = false;
-  teams: ITeam[] = [];
 
   editForm = this.fb.group({
     id: [],
     firstName: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
     jerseySize: [null, [Validators.required]],
-    team: [],
   });
 
-  constructor(
-    protected coachService: CoachService,
-    protected teamService: TeamService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected coachService: CoachService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ coach }) => {
       this.updateForm(coach);
-
-      this.teamService.query().subscribe((res: HttpResponse<ITeam[]>) => (this.teams = res.body || []));
     });
   }
 
@@ -47,7 +36,6 @@ export class CoachUpdateComponent implements OnInit {
       firstName: coach.firstName,
       lastName: coach.lastName,
       jerseySize: coach.jerseySize,
-      team: coach.team,
     });
   }
 
@@ -72,7 +60,6 @@ export class CoachUpdateComponent implements OnInit {
       firstName: this.editForm.get(['firstName'])!.value,
       lastName: this.editForm.get(['lastName'])!.value,
       jerseySize: this.editForm.get(['jerseySize'])!.value,
-      team: this.editForm.get(['team'])!.value,
     };
   }
 
@@ -90,9 +77,5 @@ export class CoachUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: ITeam): any {
-    return item.id;
   }
 }

@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,9 +29,10 @@ public class Season implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "season")
+    @ManyToMany(mappedBy = "seasons")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<League> leagues = new HashSet<>();
+    @JsonIgnore
+    private Set<League> ids = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -54,29 +56,29 @@ public class Season implements Serializable {
         this.name = name;
     }
 
-    public Set<League> getLeagues() {
-        return leagues;
+    public Set<League> getIds() {
+        return ids;
     }
 
-    public Season leagues(Set<League> leagues) {
-        this.leagues = leagues;
+    public Season ids(Set<League> leagues) {
+        this.ids = leagues;
         return this;
     }
 
-    public Season addLeague(League league) {
-        this.leagues.add(league);
-        league.setSeason(this);
+    public Season addId(League league) {
+        this.ids.add(league);
+        league.getSeasons().add(this);
         return this;
     }
 
-    public Season removeLeague(League league) {
-        this.leagues.remove(league);
-        league.setSeason(null);
+    public Season removeId(League league) {
+        this.ids.remove(league);
+        league.getSeasons().remove(this);
         return this;
     }
 
-    public void setLeagues(Set<League> leagues) {
-        this.leagues = leagues;
+    public void setIds(Set<League> leagues) {
+        this.ids = leagues;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

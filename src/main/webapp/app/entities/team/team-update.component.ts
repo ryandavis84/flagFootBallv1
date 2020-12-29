@@ -7,8 +7,12 @@ import { Observable } from 'rxjs';
 
 import { ITeam, Team } from 'app/shared/model/team.model';
 import { TeamService } from './team.service';
-import { ILeague } from 'app/shared/model/league.model';
-import { LeagueService } from 'app/entities/league/league.service';
+import { IPlayer } from 'app/shared/model/player.model';
+import { PlayerService } from 'app/entities/player/player.service';
+import { ICoach } from 'app/shared/model/coach.model';
+import { CoachService } from 'app/entities/coach/coach.service';
+
+type SelectableEntity = IPlayer | ICoach;
 
 @Component({
   selector: 'jhi-team-update',
@@ -16,17 +20,20 @@ import { LeagueService } from 'app/entities/league/league.service';
 })
 export class TeamUpdateComponent implements OnInit {
   isSaving = false;
-  leagues: ILeague[] = [];
+  players: IPlayer[] = [];
+  coaches: ICoach[] = [];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    league: [],
+    players: [],
+    coach: [],
   });
 
   constructor(
     protected teamService: TeamService,
-    protected leagueService: LeagueService,
+    protected playerService: PlayerService,
+    protected coachService: CoachService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -35,7 +42,9 @@ export class TeamUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ team }) => {
       this.updateForm(team);
 
-      this.leagueService.query().subscribe((res: HttpResponse<ILeague[]>) => (this.leagues = res.body || []));
+      this.playerService.query().subscribe((res: HttpResponse<IPlayer[]>) => (this.players = res.body || []));
+
+      this.coachService.query().subscribe((res: HttpResponse<ICoach[]>) => (this.coaches = res.body || []));
     });
   }
 
@@ -43,7 +52,8 @@ export class TeamUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: team.id,
       name: team.name,
-      league: team.league,
+      players: team.players,
+      coach: team.coach,
     });
   }
 
@@ -66,7 +76,8 @@ export class TeamUpdateComponent implements OnInit {
       ...new Team(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      league: this.editForm.get(['league'])!.value,
+      players: this.editForm.get(['players'])!.value,
+      coach: this.editForm.get(['coach'])!.value,
     };
   }
 
@@ -86,7 +97,18 @@ export class TeamUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: ILeague): any {
+  trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: IPlayer[], option: IPlayer): IPlayer {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

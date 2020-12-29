@@ -6,10 +6,10 @@ export interface ITeam {
   id?: number;
   name?: string;
   players?: IPlayer[];
-  coaches?: ICoach[];
-  league?: ILeague;
+  coach?: ICoach;
+  ids?: ILeague[];
 }
 
 export class Team implements ITeam {
-  constructor(public id?: number, public name?: string, public players?: IPlayer[], public coaches?: ICoach[], public league?: ILeague) {}
+  constructor(public id?: number, public name?: string, public players?: IPlayer[], public coach?: ICoach, public ids?: ILeague[]) {}
 }
