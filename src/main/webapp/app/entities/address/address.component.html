@@ -27,7 +27,7 @@
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.address.street2">Street 2</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.address.city">City</span></th>
                     <th scope="col" ><span jhiTranslate="flagFootBallv1App.address.state">State</span></th>
-                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.address.contactInfo">Contact Info</span></th>
+                    <th scope="col" ><span jhiTranslate="flagFootBallv1App.address.id">Id</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -39,8 +39,8 @@
                     <td>{{ address.city }}</td>
                     <td>{{ address.state }}</td>
                     <td>
-                        <div *ngIf="address.contactInfo">
-                            <a [routerLink]="['/contact-info', address.contactInfo?.id, 'view']" >{{ address.contactInfo?.id }}</a>
+                        <div *ngIf="address.id">
+                            <a [routerLink]="['/contact-info', address.id?.id, 'view']" >{{ address.id?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">

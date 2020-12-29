@@ -9,20 +9,20 @@
     <changeSet id="20201229210027-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="team_id"
-                                 baseTableName="team_player"
-                                 constraintName="fk_team_player_team_id"
+                                 baseTableName="team_id"
+                                 constraintName="fk_team_id_team_id"
                                  referencedColumnNames="id"
                                  referencedTableName="team"/>
 
-        <addForeignKeyConstraint baseColumnNames="player_id"
-                                 baseTableName="team_player"
-                                 constraintName="fk_team_player_player_id"
+        <addForeignKeyConstraint baseColumnNames="id_id"
+                                 baseTableName="team_id"
+                                 constraintName="fk_team_id_id_id"
                                  referencedColumnNames="id"
                                  referencedTableName="player"/>
         
-        <addForeignKeyConstraint baseColumnNames="coach_id"
+        <addForeignKeyConstraint baseColumnNames="id_id"
                                  baseTableName="team"
-                                 constraintName="fk_team_coach_id"
+                                 constraintName="fk_team_id_id"
                                  referencedColumnNames="id"
                                  referencedTableName="coach"/>
 

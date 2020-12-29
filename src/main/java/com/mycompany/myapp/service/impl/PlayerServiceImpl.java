@@ -45,29 +45,29 @@ public class PlayerServiceImpl implements PlayerService {
 
 
     /**
-     *  Get all the players where EmergencyContact is {@code null}.
+     *  Get all the players where Id is {@code null}.
      *  @return the list of entities.
      */
     @Transactional(readOnly = true) 
-    public List<Player> findAllWhereEmergencyContactIsNull() {
-        log.debug("Request to get all players where EmergencyContact is null");
+    public List<Player> findAllWhereIdIsNull() {
+        log.debug("Request to get all players where Id is null");
         return StreamSupport
             .stream(playerRepository.findAll().spliterator(), false)
-            .filter(player -> player.getEmergencyContact() == null)
+            .filter(player -> player.getId() == null)
             .collect(Collectors.toList());
     }
 
 
     /**
-     *  Get all the players where ContactInfo is {@code null}.
+     *  Get all the players where Id is {@code null}.
      *  @return the list of entities.
      */
     @Transactional(readOnly = true) 
-    public List<Player> findAllWhereContactInfoIsNull() {
-        log.debug("Request to get all players where ContactInfo is null");
+    public List<Player> findAllWhereIdIsNull() {
+        log.debug("Request to get all players where Id is null");
         return StreamSupport
             .stream(playerRepository.findAll().spliterator(), false)
-            .filter(player -> player.getContactInfo() == null)
+            .filter(player -> player.getId() == null)
             .collect(Collectors.toList());
     }
 

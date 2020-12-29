@@ -21,15 +21,15 @@ type SelectableEntity = IPlayer | ICoach;
 })
 export class EmergencyContactUpdateComponent implements OnInit {
   isSaving = false;
-  players: IPlayer[] = [];
-  coaches: ICoach[] = [];
+  ids: IPlayer[] = [];
+  ids: ICoach[] = [];
 
   editForm = this.fb.group({
     id: [],
     firstName: [null, [Validators.required]],
     lastName: [null, [Validators.required]],
-    player: [],
-    coach: [],
+    id: [],
+    id: [],
   });
 
   constructor(
@@ -45,46 +45,46 @@ export class EmergencyContactUpdateComponent implements OnInit {
       this.updateForm(emergencyContact);
 
       this.playerService
-        .query({ filter: 'emergencycontact-is-null' })
+        .query({ filter: 'id-is-null' })
         .pipe(
           map((res: HttpResponse<IPlayer[]>) => {
             return res.body || [];
           })
         )
         .subscribe((resBody: IPlayer[]) => {
-          if (!emergencyContact.player || !emergencyContact.player.id) {
-            this.players = resBody;
+          if (!emergencyContact.id || !emergencyContact.id.id) {
+            this.ids = resBody;
           } else {
             this.playerService
-              .find(emergencyContact.player.id)
+              .find(emergencyContact.id.id)
               .pipe(
                 map((subRes: HttpResponse<IPlayer>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IPlayer[]) => (this.players = concatRes));
+              .subscribe((concatRes: IPlayer[]) => (this.ids = concatRes));
           }
         });
 
       this.coachService
-        .query({ filter: 'emergencycontact-is-null' })
+        .query({ filter: 'id-is-null' })
         .pipe(
           map((res: HttpResponse<ICoach[]>) => {
             return res.body || [];
           })
         )
         .subscribe((resBody: ICoach[]) => {
-          if (!emergencyContact.coach || !emergencyContact.coach.id) {
-            this.coaches = resBody;
+          if (!emergencyContact.id || !emergencyContact.id.id) {
+            this.ids = resBody;
           } else {
             this.coachService
-              .find(emergencyContact.coach.id)
+              .find(emergencyContact.id.id)
               .pipe(
                 map((subRes: HttpResponse<ICoach>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: ICoach[]) => (this.coaches = concatRes));
+              .subscribe((concatRes: ICoach[]) => (this.ids = concatRes));
           }
         });
     });
@@ -95,8 +95,8 @@ export class EmergencyContactUpdateComponent implements OnInit {
       id: emergencyContact.id,
       firstName: emergencyContact.firstName,
       lastName: emergencyContact.lastName,
-      player: emergencyContact.player,
-      coach: emergencyContact.coach,
+      id: emergencyContact.id,
+      id: emergencyContact.id,
     });
   }
 
@@ -120,8 +120,8 @@ export class EmergencyContactUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       firstName: this.editForm.get(['firstName'])!.value,
       lastName: this.editForm.get(['lastName'])!.value,
-      player: this.editForm.get(['player'])!.value,
-      coach: this.editForm.get(['coach'])!.value,
+      id: this.editForm.get(['id'])!.value,
+      id: this.editForm.get(['id'])!.value,
     };
   }
 

@@ -17,7 +17,7 @@ import { ContactInfoService } from 'app/entities/contact-info/contact-info.servi
 })
 export class AddressUpdateComponent implements OnInit {
   isSaving = false;
-  contactinfos: IContactInfo[] = [];
+  ids: IContactInfo[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -25,7 +25,7 @@ export class AddressUpdateComponent implements OnInit {
     street2: [null, [Validators.required]],
     city: [null, [Validators.required]],
     state: [null, [Validators.required]],
-    contactInfo: [],
+    id: [],
   });
 
   constructor(
@@ -40,24 +40,24 @@ export class AddressUpdateComponent implements OnInit {
       this.updateForm(address);
 
       this.contactInfoService
-        .query({ filter: 'address-is-null' })
+        .query({ filter: 'id-is-null' })
         .pipe(
           map((res: HttpResponse<IContactInfo[]>) => {
             return res.body || [];
           })
         )
         .subscribe((resBody: IContactInfo[]) => {
-          if (!address.contactInfo || !address.contactInfo.id) {
-            this.contactinfos = resBody;
+          if (!address.id || !address.id.id) {
+            this.ids = resBody;
           } else {
             this.contactInfoService
-              .find(address.contactInfo.id)
+              .find(address.id.id)
               .pipe(
                 map((subRes: HttpResponse<IContactInfo>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
                 })
               )
-              .subscribe((concatRes: IContactInfo[]) => (this.contactinfos = concatRes));
+              .subscribe((concatRes: IContactInfo[]) => (this.ids = concatRes));
           }
         });
     });
@@ -70,7 +70,7 @@ export class AddressUpdateComponent implements OnInit {
       street2: address.street2,
       city: address.city,
       state: address.state,
-      contactInfo: address.contactInfo,
+      id: address.id,
     });
   }
 
@@ -96,7 +96,7 @@ export class AddressUpdateComponent implements OnInit {
       street2: this.editForm.get(['street2'])!.value,
       city: this.editForm.get(['city'])!.value,
       state: this.editForm.get(['state'])!.value,
-      contactInfo: this.editForm.get(['contactInfo'])!.value,
+      id: this.editForm.get(['id'])!.value,
     };
   }
 

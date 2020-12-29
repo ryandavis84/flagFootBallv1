@@ -17,13 +17,13 @@ import java.util.Optional;
 @Repository
 public interface LeagueRepository extends JpaRepository<League, Long> {
 
-    @Query(value = "select distinct league from League league left join fetch league.teams left join fetch league.seasons",
+    @Query(value = "select distinct league from League league left join fetch league.ids left join fetch league.ids",
         countQuery = "select count(distinct league) from League league")
     Page<League> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct league from League league left join fetch league.teams left join fetch league.seasons")
+    @Query("select distinct league from League league left join fetch league.ids left join fetch league.ids")
     List<League> findAllWithEagerRelationships();
 
-    @Query("select league from League league left join fetch league.teams left join fetch league.seasons where league.id =:id")
+    @Query("select league from League league left join fetch league.ids left join fetch league.ids where league.id =:id")
     Optional<League> findOneWithEagerRelationships(@Param("id") Long id);
 }

@@ -20,16 +20,16 @@
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "player",
-      "otherEntityRelationshipName": "emergencyContact",
-      "relationshipName": "player",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": true
     },
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "coach",
-      "otherEntityRelationshipName": "emergencyContact",
-      "relationshipName": "coach",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": true
     }

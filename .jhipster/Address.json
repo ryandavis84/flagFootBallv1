@@ -34,8 +34,8 @@
     {
       "relationshipType": "one-to-one",
       "otherEntityName": "contactInfo",
-      "otherEntityRelationshipName": "address",
-      "relationshipName": "contactInfo",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": true
     }

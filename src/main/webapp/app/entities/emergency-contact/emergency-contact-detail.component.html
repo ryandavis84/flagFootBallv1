@@ -16,16 +16,16 @@
                 <dd>
                     <span>{{ emergencyContact.lastName }}</span>
                 </dd>
-                <dt><span jhiTranslate="flagFootBallv1App.emergencyContact.player">Player</span></dt>
+                <dt><span jhiTranslate="flagFootBallv1App.emergencyContact.id">Id</span></dt>
                 <dd>
-                    <div *ngIf="emergencyContact.player">
-                        <a [routerLink]="['/player', emergencyContact.player?.id, 'view']">{{ emergencyContact.player?.id }}</a>
+                    <div *ngIf="emergencyContact.id">
+                        <a [routerLink]="['/player', emergencyContact.id?.id, 'view']">{{ emergencyContact.id?.id }}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="flagFootBallv1App.emergencyContact.coach">Coach</span></dt>
+                <dt><span jhiTranslate="flagFootBallv1App.emergencyContact.id">Id</span></dt>
                 <dd>
-                    <div *ngIf="emergencyContact.coach">
-                        <a [routerLink]="['/coach', emergencyContact.coach?.id, 'view']">{{ emergencyContact.coach?.id }}</a>
+                    <div *ngIf="emergencyContact.id">
+                        <a [routerLink]="['/coach', emergencyContact.id?.id, 'view']">{{ emergencyContact.id?.id }}</a>
                     </div>
                 </dd>
             </dl>

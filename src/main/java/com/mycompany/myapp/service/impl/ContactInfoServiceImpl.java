@@ -45,15 +45,15 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 
 
     /**
-     *  Get all the contactInfos where Address is {@code null}.
+     *  Get all the contactInfos where Id is {@code null}.
      *  @return the list of entities.
      */
     @Transactional(readOnly = true) 
-    public List<ContactInfo> findAllWhereAddressIsNull() {
-        log.debug("Request to get all contactInfos where Address is null");
+    public List<ContactInfo> findAllWhereIdIsNull() {
+        log.debug("Request to get all contactInfos where Id is null");
         return StreamSupport
             .stream(contactInfoRepository.findAll().spliterator(), false)
-            .filter(contactInfo -> contactInfo.getAddress() == null)
+            .filter(contactInfo -> contactInfo.getId() == null)
             .collect(Collectors.toList());
     }
 

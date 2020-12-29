@@ -30,17 +30,17 @@ public class League implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "league_team",
+    @JoinTable(name = "league_id",
                joinColumns = @JoinColumn(name = "league_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id"))
-    private Set<Team> teams = new HashSet<>();
+               inverseJoinColumns = @JoinColumn(name = "id_id", referencedColumnName = "id"))
+    private Set<Team> ids = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "league_season",
+    @JoinTable(name = "league_id",
                joinColumns = @JoinColumn(name = "league_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "season_id", referencedColumnName = "id"))
-    private Set<Season> seasons = new HashSet<>();
+               inverseJoinColumns = @JoinColumn(name = "id_id", referencedColumnName = "id"))
+    private Set<Season> ids = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -64,54 +64,54 @@ public class League implements Serializable {
         this.name = name;
     }
 
-    public Set<Team> getTeams() {
-        return teams;
+    public Set<Team> getIds() {
+        return ids;
     }
 
-    public League teams(Set<Team> teams) {
-        this.teams = teams;
+    public League ids(Set<Team> teams) {
+        this.ids = teams;
         return this;
     }
 
-    public League addTeam(Team team) {
-        this.teams.add(team);
+    public League addId(Team team) {
+        this.ids.add(team);
         team.getIds().add(this);
         return this;
     }
 
-    public League removeTeam(Team team) {
-        this.teams.remove(team);
+    public League removeId(Team team) {
+        this.ids.remove(team);
         team.getIds().remove(this);
         return this;
     }
 
-    public void setTeams(Set<Team> teams) {
-        this.teams = teams;
+    public void setIds(Set<Team> teams) {
+        this.ids = teams;
     }
 
-    public Set<Season> getSeasons() {
-        return seasons;
+    public Set<Season> getIds() {
+        return ids;
     }
 
-    public League seasons(Set<Season> seasons) {
-        this.seasons = seasons;
+    public League ids(Set<Season> seasons) {
+        this.ids = seasons;
         return this;
     }
 
-    public League addSeason(Season season) {
-        this.seasons.add(season);
+    public League addId(Season season) {
+        this.ids.add(season);
         season.getIds().add(this);
         return this;
     }
 
-    public League removeSeason(Season season) {
-        this.seasons.remove(season);
+    public League removeId(Season season) {
+        this.ids.remove(season);
         season.getIds().remove(this);
         return this;
     }
 
-    public void setSeasons(Set<Season> seasons) {
-        this.seasons = seasons;
+    public void setIds(Set<Season> seasons) {
+        this.ids = seasons;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

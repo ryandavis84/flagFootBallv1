@@ -6,7 +6,7 @@ export interface IAddress {
   street2?: string;
   city?: string;
   state?: string;
-  contactInfo?: IContactInfo;
+  id?: IContactInfo;
 }
 
 export class Address implements IAddress {
@@ -16,6 +16,6 @@ export class Address implements IAddress {
     public street2?: string,
     public city?: string,
     public state?: string,
-    public contactInfo?: IContactInfo
+    public id?: IContactInfo
   ) {}
 }

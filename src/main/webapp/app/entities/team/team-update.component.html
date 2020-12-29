@@ -24,17 +24,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="flagFootBallv1App.team.player" for="field_players">Player</label>
-                    <select class="form-control" id="field_players" multiple name="players" formControlName="players">
-                        <option [ngValue]="getSelected(editForm.get('players')!.value, playerOption)" *ngFor="let playerOption of players; trackBy: trackById">{{ playerOption.id }}</option>
+                    <label jhiTranslate="flagFootBallv1App.team.id" for="field_ids">Id</label>
+                    <select class="form-control" id="field_ids" multiple name="ids" formControlName="ids">
+                        <option [ngValue]="getSelected(editForm.get('ids')!.value, playerOption)" *ngFor="let playerOption of players; trackBy: trackById">{{ playerOption.id }}</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.team.coach" for="field_coach">Coach</label>
-                    <select class="form-control" id="field_coach" name="coach" formControlName="coach">
+                    <label class="form-control-label" jhiTranslate="flagFootBallv1App.team.id" for="field_id">Id</label>
+                    <select class="form-control" id="field_id" name="id" formControlName="id">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="coachOption.id === editForm.get('coach')!.value?.id ? editForm.get('coach')!.value : coachOption" *ngFor="let coachOption of coaches; trackBy: trackById">{{ coachOption.id }}</option>
+                        <option [ngValue]="coachOption.id === editForm.get('id')!.value?.id ? editForm.get('id')!.value : coachOption" *ngFor="let coachOption of coaches; trackBy: trackById">{{ coachOption.id }}</option>
                     </select>
                 </div>
             </div>

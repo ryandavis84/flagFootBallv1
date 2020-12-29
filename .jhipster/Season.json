@@ -13,7 +13,7 @@
     {
       "relationshipType": "many-to-many",
       "otherEntityName": "league",
-      "otherEntityRelationshipName": "season",
+      "otherEntityRelationshipName": "id",
       "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": false

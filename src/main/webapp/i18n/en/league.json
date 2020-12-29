@@ -17,8 +17,8 @@
         "title": "League"
       },
       "name": "Name",
-      "team": "Team",
-      "season": "Season"
+      "id": "Id",
+      "id": "Id"
     }
   }
 }

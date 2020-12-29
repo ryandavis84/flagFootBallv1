@@ -32,16 +32,16 @@ public class Team implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "team_player",
+    @JoinTable(name = "team_id",
                joinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "player_id", referencedColumnName = "id"))
-    private Set<Player> players = new HashSet<>();
+               inverseJoinColumns = @JoinColumn(name = "id_id", referencedColumnName = "id"))
+    private Set<Player> ids = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "teams", allowSetters = true)
-    private Coach coach;
+    @JsonIgnoreProperties(value = "ids", allowSetters = true)
+    private Coach id;
 
-    @ManyToMany(mappedBy = "teams")
+    @ManyToMany(mappedBy = "ids")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
     private Set<League> ids = new HashSet<>();
@@ -68,42 +68,42 @@ public class Team implements Serializable {
         this.name = name;
     }
 
-    public Set<Player> getPlayers() {
-        return players;
+    public Set<Player> getIds() {
+        return ids;
     }
 
-    public Team players(Set<Player> players) {
-        this.players = players;
+    public Team ids(Set<Player> players) {
+        this.ids = players;
         return this;
     }
 
-    public Team addPlayer(Player player) {
-        this.players.add(player);
+    public Team addId(Player player) {
+        this.ids.add(player);
         player.getIds().add(this);
         return this;
     }
 
-    public Team removePlayer(Player player) {
-        this.players.remove(player);
+    public Team removeId(Player player) {
+        this.ids.remove(player);
         player.getIds().remove(this);
         return this;
     }
 
-    public void setPlayers(Set<Player> players) {
-        this.players = players;
+    public void setIds(Set<Player> players) {
+        this.ids = players;
     }
 
-    public Coach getCoach() {
-        return coach;
+    public Coach getId() {
+        return id;
     }
 
-    public Team coach(Coach coach) {
-        this.coach = coach;
+    public Team id(Coach coach) {
+        this.id = coach;
         return this;
     }
 
-    public void setCoach(Coach coach) {
-        this.coach = coach;
+    public void setId(Coach coach) {
+        this.id = coach;
     }
 
     public Set<League> getIds() {
@@ -117,13 +117,13 @@ public class Team implements Serializable {
 
     public Team addId(League league) {
         this.ids.add(league);
-        league.getTeams().add(this);
+        league.getIds().add(this);
         return this;
     }
 
     public Team removeId(League league) {
         this.ids.remove(league);
-        league.getTeams().remove(this);
+        league.getIds().remove(this);
         return this;
     }
 

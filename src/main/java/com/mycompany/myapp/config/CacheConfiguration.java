@@ -64,6 +64,8 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.Team.class.getName() + ".ids");
             createCache(cm, com.mycompany.myapp.domain.Player.class.getName() + ".ids");
             createCache(cm, com.mycompany.myapp.domain.Coach.class.getName() + ".teams");
+            createCache(cm, com.mycompany.myapp.domain.League.class.getName() + ".ids");
+            createCache(cm, com.mycompany.myapp.domain.Coach.class.getName() + ".ids");
             // jhipster-needle-ehcache-add-entry
         };
     }

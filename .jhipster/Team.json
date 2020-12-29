@@ -14,21 +14,21 @@
       "relationshipType": "many-to-many",
       "otherEntityName": "player",
       "otherEntityRelationshipName": "id",
-      "relationshipName": "player",
+      "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": true
     },
     {
       "relationshipType": "many-to-one",
       "otherEntityName": "coach",
-      "otherEntityRelationshipName": "team",
-      "relationshipName": "coach",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "id",
       "otherEntityField": "id"
     },
     {
       "relationshipType": "many-to-many",
       "otherEntityName": "league",
-      "otherEntityRelationshipName": "team",
+      "otherEntityRelationshipName": "id",
       "relationshipName": "id",
       "otherEntityField": "id",
       "ownerSide": false
